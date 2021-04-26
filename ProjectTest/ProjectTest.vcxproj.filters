@@ -15,6 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Service.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Date.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientСard.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="MyForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
@@ -22,6 +31,18 @@
   <ItemGroup>
     <ClInclude Include="MyForm.h">
       <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="PatientСard.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabinet.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

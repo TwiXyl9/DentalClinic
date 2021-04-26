@@ -118,12 +118,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="PatientСard.cpp" />
+    <ClCompile Include="Service.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cabinet.h" />
+    <ClInclude Include="Date.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PatientСard.h" />
+    <ClInclude Include="Service.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
