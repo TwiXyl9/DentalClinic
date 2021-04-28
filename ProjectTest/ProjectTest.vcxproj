@@ -119,23 +119,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="MenuForm.cpp" />
+    <ClCompile Include="PatientBaseForm.cpp" />
     <ClCompile Include="PatientСard.cpp" />
     <ClCompile Include="Service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabinet.h" />
     <ClInclude Include="Date.h" />
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="MenuForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PatientBaseForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PatientСard.h" />
     <ClInclude Include="Service.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\Lenovo\Downloads\tooth.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

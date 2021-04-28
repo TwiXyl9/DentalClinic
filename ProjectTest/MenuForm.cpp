@@ -1,4 +1,4 @@
-#include "MyForm.h"
+#include "MenuForm.h"
 #include <Windows.h>
 using namespace ProjectTest; // Название проекта
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
