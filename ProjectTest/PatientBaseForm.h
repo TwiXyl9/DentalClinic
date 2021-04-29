@@ -12,10 +12,10 @@ namespace ProjectTest {
 	/// <summary>
 	/// Сводка для MyForm1
 	/// </summary>
-	public ref class MyForm1 : public System::Windows::Forms::Form
+	public ref class PatientBaseForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm1(void)
+		PatientBaseForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace ProjectTest {
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
-		~MyForm1()
+		~PatientBaseForm()
 		{
 			if (components)
 			{
