@@ -119,24 +119,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="PatientCardDAO.cpp" />
     <ClCompile Include="PatientСard.cpp" />
     <ClCompile Include="Service.cpp" />
+    <ClCompile Include="ServiceDAO.cpp" />
     <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="TicketDAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PatientСard.h" />
+    <ClInclude Include="PatientCardDAO.h" />
     <ClInclude Include="Service.h" />
+    <ClInclude Include="ServiceDAO.h" />
     <ClInclude Include="Ticket.h" />
+    <ClInclude Include="TicketDAO.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\pugixml.1.11.0\build\native\pugixml.targets" Condition="Exists('..\packages\pugixml.1.11.0\build\native\pugixml.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\pugixml.1.11.0\build\native\pugixml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\pugixml.1.11.0\build\native\pugixml.targets'))" />
+  </Target>
 </Project>

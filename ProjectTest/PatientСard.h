@@ -1,5 +1,4 @@
 #pragma once
-#include "Patient—ard.h"
 #include <string>
 #include <vector>
 #include "Ticket.h"
