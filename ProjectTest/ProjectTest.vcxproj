@@ -121,8 +121,10 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="PatientBaseForm.cpp" />
+    <ClCompile Include="PatientInfoForm.cpp" />
     <ClCompile Include="PatientСard.cpp" />
     <ClCompile Include="Service.cpp" />
+    <ClCompile Include="ServicesForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cabinet.h" />
@@ -133,12 +135,27 @@
     <ClInclude Include="PatientBaseForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PatientInfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="PatientСard.h" />
     <ClInclude Include="Service.h" />
+    <ClInclude Include="ServicesForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientBaseForm.resx">
+      <DependentUpon>PatientBaseForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientInfoForm.resx">
+      <DependentUpon>PatientInfoForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicesForm.resx">
+      <DependentUpon>ServicesForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

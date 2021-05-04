@@ -10,12 +10,12 @@ namespace ProjectTest {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для MyForm1
+	/// Сводка для ServicesForm
 	/// </summary>
-	public ref class PatientBaseForm : public System::Windows::Forms::Form
+	public ref class ServicesForm : public System::Windows::Forms::Form
 	{
 	public:
-		PatientBaseForm(void)
+		ServicesForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace ProjectTest {
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
-		~PatientBaseForm()
+		~ServicesForm()
 		{
 			if (components)
 			{
@@ -36,9 +36,11 @@ namespace ProjectTest {
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	protected:
+
+
+	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::Button^ button1;
 
 	private:
 		/// <summary>
@@ -53,7 +55,7 @@ namespace ProjectTest {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PatientBaseForm::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ServicesForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -68,45 +70,45 @@ namespace ProjectTest {
 				this->Column1,
 					this->Column2
 			});
-			this->dataGridView1->Location = System::Drawing::Point(12, 172);
+			this->dataGridView1->Location = System::Drawing::Point(36, 124);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(405, 334);
+			this->dataGridView1->Size = System::Drawing::Size(503, 282);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// Column1
 			// 
-			this->Column1->HeaderText = L"Имя:";
+			this->Column1->HeaderText = L"Название:";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 150;
+			this->Column1->Width = 300;
 			// 
 			// Column2
 			// 
-			this->Column2->HeaderText = L"Фамилия:";
+			this->Column2->HeaderText = L"Стоимость (б.р.):";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
 			this->Column2->Width = 150;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(414, 75);
+			this->button1->Location = System::Drawing::Point(228, 432);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(101, 43);
+			this->button1->Size = System::Drawing::Size(102, 39);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
-			// PatientBaseForm
+			// ServicesForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(805, 518);
+			this->ClientSize = System::Drawing::Size(582, 502);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Name = L"PatientBaseForm";
+			this->Name = L"ServicesForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Dental Clinic";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
