@@ -1,4 +1,5 @@
 #pragma once
+#include "AddServiceForm.h"
 
 namespace ProjectTest {
 
@@ -35,12 +36,15 @@ namespace ProjectTest {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::Button^ AddService_Button;
 	protected:
 
 
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+
+
+
 
 	private:
 		/// <summary>
@@ -59,7 +63,7 @@ namespace ProjectTest {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->AddService_Button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -79,33 +83,36 @@ namespace ProjectTest {
 			// 
 			// Column1
 			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Column1->HeaderText = L"Название:";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 300;
+			this->Column1->ReadOnly = true;
 			// 
 			// Column2
 			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Column2->HeaderText = L"Стоимость (б.р.):";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
+			this->Column2->ReadOnly = true;
 			// 
-			// button1
+			// AddService_Button
 			// 
-			this->button1->Location = System::Drawing::Point(228, 432);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(102, 39);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = true;
+			this->AddService_Button->Location = System::Drawing::Point(36, 41);
+			this->AddService_Button->Name = L"AddService_Button";
+			this->AddService_Button->Size = System::Drawing::Size(503, 49);
+			this->AddService_Button->TabIndex = 2;
+			this->AddService_Button->Text = L"Добавить";
+			this->AddService_Button->UseVisualStyleBackColor = true;
+			this->AddService_Button->Click += gcnew System::EventHandler(this, &ServicesForm::AddService_Button_Click);
 			// 
 			// ServicesForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(582, 502);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->AddService_Button);
 			this->Controls->Add(this->dataGridView1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"ServicesForm";
@@ -116,5 +123,9 @@ namespace ProjectTest {
 
 		}
 #pragma endregion
-	};
+	private: System::Void AddService_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+		AddServiceForm addServiceForm;
+		addServiceForm.ShowDialog();
+	}
+};
 }

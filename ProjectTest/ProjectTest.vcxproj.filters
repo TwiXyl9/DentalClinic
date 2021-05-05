@@ -19,6 +19,9 @@
     <Filter Include="DB">
       <UniqueIdentifier>{d1bbd713-af32-4463-bac2-3073c2272f84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Forms">
+      <UniqueIdentifier>{a1ce8947-5565-4ec0-8c56-7be0db62b64c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Service.cpp">
@@ -30,9 +33,6 @@
     <ClCompile Include="PatientСard.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="MenuForm.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="PatientBaseForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
@@ -40,6 +40,15 @@
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
     <ClCompile Include="ServicesForm.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuForm.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="AddServiceForm.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="AddPatientForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,6 +75,12 @@
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
     <ClInclude Include="ServicesForm.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="AddServiceForm.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPatientForm.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
   </ItemGroup>

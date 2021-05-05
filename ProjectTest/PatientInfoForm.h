@@ -43,7 +43,8 @@ namespace ProjectTest {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::ListBox^ ServicesListBox;
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox3;
@@ -75,7 +76,7 @@ namespace ProjectTest {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->ServicesListBox = (gcnew System::Windows::Forms::ListBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
@@ -158,14 +159,14 @@ namespace ProjectTest {
 			this->label8->TabIndex = 7;
 			this->label8->Text = L"Список талонов:";
 			// 
-			// listBox1
+			// ServicesListBox
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 16;
-			this->listBox1->Location = System::Drawing::Point(151, 226);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(187, 100);
-			this->listBox1->TabIndex = 8;
+			this->ServicesListBox->FormattingEnabled = true;
+			this->ServicesListBox->ItemHeight = 16;
+			this->ServicesListBox->Location = System::Drawing::Point(151, 226);
+			this->ServicesListBox->Name = L"ServicesListBox";
+			this->ServicesListBox->Size = System::Drawing::Size(187, 100);
+			this->ServicesListBox->TabIndex = 8;
 			// 
 			// textBox1
 			// 
@@ -218,7 +219,7 @@ namespace ProjectTest {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(187, 393);
+			this->button1->Location = System::Drawing::Point(172, 390);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(124, 41);
 			this->button1->TabIndex = 16;
@@ -239,7 +240,7 @@ namespace ProjectTest {
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->ServicesListBox);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);

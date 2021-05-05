@@ -1,4 +1,7 @@
 #pragma once
+#include "PatientInfoForm.h"
+#include "AddPatientForm.h"
+#include "AddPatientForm.h"
 
 namespace ProjectTest {
 
@@ -35,10 +38,19 @@ namespace ProjectTest {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Button^ AddPatient_Button;
 	protected:
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::Button^ button1;
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -57,7 +69,7 @@ namespace ProjectTest {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->AddPatient_Button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -68,42 +80,46 @@ namespace ProjectTest {
 				this->Column1,
 					this->Column2
 			});
-			this->dataGridView1->Location = System::Drawing::Point(12, 172);
+			this->dataGridView1->Location = System::Drawing::Point(44, 165);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(405, 334);
 			this->dataGridView1->TabIndex = 0;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PatientBaseForm::dataGridView1_CellContentClick);
 			// 
 			// Column1
 			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Column1->HeaderText = L"Имя:";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 150;
+			this->Column1->ReadOnly = true;
 			// 
 			// Column2
 			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Column2->HeaderText = L"Фамилия:";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
-			this->Column2->Width = 150;
+			this->Column2->ReadOnly = true;
 			// 
-			// button1
+			// AddPatient_Button
 			// 
-			this->button1->Location = System::Drawing::Point(414, 75);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(101, 43);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = true;
+			this->AddPatient_Button->Location = System::Drawing::Point(44, 82);
+			this->AddPatient_Button->Name = L"AddPatient_Button";
+			this->AddPatient_Button->Size = System::Drawing::Size(405, 43);
+			this->AddPatient_Button->TabIndex = 1;
+			this->AddPatient_Button->Text = L"Добавить";
+			this->AddPatient_Button->UseVisualStyleBackColor = true;
+			this->AddPatient_Button->Click += gcnew System::EventHandler(this, &PatientBaseForm::AddPatient_Button_Click);
 			// 
 			// PatientBaseForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(805, 518);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(502, 592);
+			this->Controls->Add(this->AddPatient_Button);
 			this->Controls->Add(this->dataGridView1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"PatientBaseForm";
@@ -114,5 +130,13 @@ namespace ProjectTest {
 
 		}
 #pragma endregion
-	};
+	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	}
+	private: System::Void AddPatient_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+		AddPatientForm addPatientForm;
+		addPatientForm.ShowDialog();
+
+	}
+};
 }
+ 

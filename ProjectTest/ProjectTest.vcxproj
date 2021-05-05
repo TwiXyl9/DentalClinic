@@ -118,6 +118,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddPatientForm.cpp" />
+    <ClCompile Include="AddServiceForm.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="PatientBaseForm.cpp" />
@@ -127,6 +129,12 @@
     <ClCompile Include="ServicesForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddPatientForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddServiceForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Cabinet.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="MenuForm.h">
@@ -145,6 +153,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddPatientForm.resx">
+      <DependentUpon>AddPatientForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddServiceForm.resx">
+      <DependentUpon>AddServiceForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.h</DependentUpon>
     </EmbeddedResource>
