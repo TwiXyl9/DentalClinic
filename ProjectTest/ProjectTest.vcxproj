@@ -118,6 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DateParser.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="PatientCardDAO.cpp" />
     <ClCompile Include="PatientСard.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="TicketDAO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DateParser.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

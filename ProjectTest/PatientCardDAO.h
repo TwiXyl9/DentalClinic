@@ -1,9 +1,12 @@
 #pragma once
+#include<iostream>
 #include "PatientСard.h"
 #include <vector>
 #include <pugixml.hpp>
-#include<string>
+#include <string>
+#include "DateParser.h"
 using namespace std;
+using namespace pugi;
 class PatientCardDAO {
 public:
 	//путь к файлу, где хранятся информация о данных пациента

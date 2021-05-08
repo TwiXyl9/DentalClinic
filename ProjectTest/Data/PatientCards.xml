@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<PatientCards>
+<PatientCard>
+	<Id>1</Id>
+	<Name>Dima</Name>
+	<Surname>Karkanitsa</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+<PatientCard>
+	<Id>2</Id>
+	<Name>Kirill</Name>
+	<Surname>Ivanov</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+<PatientCard>
+	<Id>3</Id>
+	<Name>Andrey</Name>
+	<Surname>Likovich</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+<PatientCard>
+	<Id>4</Id>
+	<Name>Ulian</Name>
+	<Surname>Samoilov</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+<PatientCard>
+	<Id>5</Id>
+	<Name>Denis</Name>
+	<Surname>Stankevich</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+<PatientCard>
+	<Id>6</Id>
+	<Name>Diana</Name>
+	<Surname>Mudraya</Surname>
+	<PhoneNumber>+375334890876</PhoneNumber>
+	<Email>email1</Email>
+	<DateOfRegistration>22.03.2008</DateOfRegistration>
+</PatientCard>
+</PatientCards>
+

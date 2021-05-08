@@ -19,7 +19,7 @@ public:
 	//номер телефона
 	string PhoneNumber;
 	//мыло
-	string email;
+	string Email;
 	//дата регистрации карты
 	tm DateOfRegistration;
 	//список посещений пациаета(список талонов/история болезней)
