@@ -1,10 +1,14 @@
 #pragma once
 #include <string>
 using namespace std;
-class Service {
+class Service 
+{
 public:
 	Service();
-	Service(string name, float price);
-	string ServiceTitle;
+
+	static string* GetFields(string service);
+
+	int Id;
+	string Title;
 	float Price;
 };

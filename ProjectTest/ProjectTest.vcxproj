@@ -118,19 +118,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="PatientCardDAO.cpp" />
     <ClCompile Include="PatientСard.cpp" />
     <ClCompile Include="Service.cpp" />
+    <ClCompile Include="ServiceDAO.cpp" />
+    <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="TicketDAO.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cabinet.h" />
-    <ClInclude Include="Date.h" />
+    <ClInclude Include="DateTime.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PatientCardDAO.h" />
     <ClInclude Include="PatientСard.h" />
     <ClInclude Include="Service.h" />
+    <ClInclude Include="ServiceDAO.h" />
+    <ClInclude Include="Ticket.h" />
+    <ClInclude Include="TicketDAO.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
