@@ -4,9 +4,9 @@ PatientCard::PatientCard()
 {
 }
 
-string* PatientCard::GetFields(string patientCard)
+vector<string> PatientCard::GetFields(string patientCard)
 {
-	string fields[7];
+	vector<string> fields;
 	string currentField;
 
 	int j = 0;
@@ -18,7 +18,7 @@ string* PatientCard::GetFields(string patientCard)
 			currentField += patientCard[j];
 			j++;
 		}
-		fields[i] = currentField;
+		fields.push_back(currentField);
 		j++;
 	}
 	return fields;

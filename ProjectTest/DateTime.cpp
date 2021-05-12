@@ -4,15 +4,15 @@ DateTime::DateTime()
 {
 }
 
-string* DateTime::GetFields(string dateTime)
+vector<string> DateTime::GetFields(string dateTime)
 {
-	string fields[6];
-	fields[0] = dateTime[0] + dateTime[1];
-	fields[1] = dateTime[3] + dateTime[4];
-	fields[2] = dateTime[6] + dateTime[7];
-	fields[3] = dateTime[9] + dateTime[10];
-	fields[4] = dateTime[12] + dateTime[13];
-	fields[5] = dateTime[15] + dateTime[16];
+	vector<string> fields;
+	fields.push_back(to_string(dateTime[0]) + to_string(dateTime[1]));
+	fields.push_back(to_string(dateTime[3]) + to_string(dateTime[4]));
+	fields.push_back(to_string(dateTime[6]) + to_string(dateTime[7]));
+	fields.push_back(to_string(dateTime[9]) + to_string(dateTime[10]));
+	fields.push_back(to_string(dateTime[12]) + to_string(dateTime[13]));
+	fields.push_back(to_string(dateTime[15]) + to_string(dateTime[16]));
 
 	return fields;
 }

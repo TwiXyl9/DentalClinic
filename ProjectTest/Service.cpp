@@ -4,9 +4,9 @@ Service::Service()
 {
 }
 
-string* Service::GetFields(string service)
+vector<string> Service::GetFields(string service)
 {
-	string fields[3];
+	vector<string> fields;
 	string currentField;
 
 	int j = 0;
@@ -18,7 +18,7 @@ string* Service::GetFields(string service)
 			currentField += service[j];
 			j++;
 		}
-		fields[i] = currentField;
+		fields.push_back(currentField);
 		j++;
 	}
 	return fields;

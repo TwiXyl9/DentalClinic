@@ -23,8 +23,8 @@ namespace ProjectTest {
 		MenuForm(void)
 		{
 			InitializeComponent();
-			/*patientCardDAO = new PatientCardDAO();
-			patientCardDAO->LoadPatientCards();*/
+			patientCardDAO = new PatientCardDAO();
+			patientCardDAO->LoadPatientCards();
 			//
 			//TODO: добавьте код конструктора
 			//

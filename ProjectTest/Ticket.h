@@ -1,11 +1,13 @@
 #pragma once
 #include "DateTime.h"
+#include<vector>
+#include <string>
 class Ticket
 {
 public:
 	Ticket();
 
-	static string* GetFields(string ticket);
+	static vector<string> GetFields(string ticket);
 
 	int Id;
 	int PatientCardId;

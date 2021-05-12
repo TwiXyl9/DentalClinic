@@ -4,9 +4,9 @@ Ticket::Ticket()
 {
 }
 
-string* Ticket::GetFields(string ticket)
+vector<string> Ticket::GetFields(string ticket)
 {
-	string fields[5];
+	vector<string> fields;
 	string currentField;
 
 	int j = 0;
@@ -18,7 +18,7 @@ string* Ticket::GetFields(string ticket)
 			currentField += ticket[j];
 			j++;
 		}
-		fields[i] = currentField;
+		fields.push_back(currentField);
 		j++;
 	}
 	return fields;
