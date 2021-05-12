@@ -1,6 +1,7 @@
 #pragma once
 #include "PatientBaseForm.h"
 #include "ServicesForm.h"
+#include "PatientCardDAO.h"
 
 namespace ProjectTest {
 
@@ -12,6 +13,7 @@ namespace ProjectTest {
 	using namespace System::Drawing;
 
 
+
 	/// <summary>
 	/// Сводка для MyForm
 	/// </summary>
@@ -21,15 +23,18 @@ namespace ProjectTest {
 		MenuForm(void)
 		{
 			InitializeComponent();
+			/*patientCardDAO = new PatientCardDAO();
+			patientCardDAO->LoadPatientCards();*/
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
-
+	public: PatientCardDAO* patientCardDAO;
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
+/// 
 		~MenuForm()
 		{
 			if (components)
@@ -160,7 +165,6 @@ namespace ProjectTest {
 			this->PatientSearchBox->Name = L"PatientSearchBox";
 			this->PatientSearchBox->Size = System::Drawing::Size(130, 22);
 			this->PatientSearchBox->TabIndex = 9;
-			this->PatientSearchBox->TextChanged += gcnew System::EventHandler(this, &MenuForm::PatientSearchBox_TextChanged);
 			// 
 			// PatientBase_Button
 			// 
@@ -242,8 +246,5 @@ namespace ProjectTest {
 		servicesForm.ShowDialog();
 		this->Show();
 	}
-private: System::Void PatientSearchBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-
-}
 };
 }
