@@ -18,7 +18,7 @@ void TicketDAO::LoadTickets()
 
 
 
-		auto dateOfBirthFields = DateTime::GetFields(ticketFields[3]);
+		auto dateOfBirthFields = DateAndTime::GetFields(ticketFields[3]);
 		ticket.DateTime.Days = stoi(dateOfBirthFields[0]);
 		ticket.DateTime.Months = stoi(dateOfBirthFields[1]);
 		ticket.DateTime.Years = stoi(dateOfBirthFields[2]);
