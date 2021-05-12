@@ -92,13 +92,13 @@ namespace ProjectTest {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuForm::typeid));
 			this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
 			this->PatientGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->PatientSearchBox = (gcnew System::Windows::Forms::TextBox());
 			this->PatientBase_Button = (gcnew System::Windows::Forms::Button());
 			this->ServicesList_Button = (gcnew System::Windows::Forms::Button());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -111,6 +111,10 @@ namespace ProjectTest {
 			// 
 			// PatientGridView
 			// 
+			this->PatientGridView->AllowUserToAddRows = false;
+			this->PatientGridView->AllowUserToDeleteRows = false;
+			this->PatientGridView->AllowUserToResizeColumns = false;
+			this->PatientGridView->AllowUserToResizeRows = false;
 			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::Control;
 			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -150,6 +154,30 @@ namespace ProjectTest {
 			this->PatientGridView->Size = System::Drawing::Size(377, 424);
 			this->PatientGridView->TabIndex = 7;
 			// 
+			// Column1
+			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column1->HeaderText = L"Имя";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->ReadOnly = true;
+			// 
+			// Column3
+			// 
+			this->Column3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column3->HeaderText = L"Фамилия";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->ReadOnly = true;
+			// 
+			// Column2
+			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column2->HeaderText = L"Статус";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->ReadOnly = true;
+			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -185,30 +213,6 @@ namespace ProjectTest {
 			this->ServicesList_Button->Text = L"Список услуг";
 			this->ServicesList_Button->UseVisualStyleBackColor = true;
 			this->ServicesList_Button->Click += gcnew System::EventHandler(this, &MenuForm::ServicesList_Button_Click);
-			// 
-			// Column1
-			// 
-			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column1->HeaderText = L"Имя";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->ReadOnly = true;
-			// 
-			// Column3
-			// 
-			this->Column3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column3->HeaderText = L"Фамилия";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->ReadOnly = true;
-			// 
-			// Column2
-			// 
-			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->HeaderText = L"Статус";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->ReadOnly = true;
 			// 
 			// MenuForm
 			// 
