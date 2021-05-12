@@ -120,7 +120,7 @@
   <ItemGroup>
     <ClCompile Include="AddPatientForm.cpp" />
     <ClCompile Include="AddServiceForm.cpp" />
-    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="DateAndTime.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="PatientBaseForm.cpp" />
     <ClCompile Include="PatientCardDAO.cpp" />
@@ -139,7 +139,7 @@
     <ClInclude Include="AddServiceForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="DateAndTime.h" />
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

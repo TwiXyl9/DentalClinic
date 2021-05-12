@@ -2,10 +2,10 @@
 #include <string>
 #include <vector>
 using namespace std;
-class DateTime 
+class DateAndTime 
 {
 public:
-	DateTime();
+	DateAndTime();
 	static vector<string> GetFields(string dateTime);
 	string ToString();
 	int Seconds;

@@ -1,5 +1,5 @@
 #pragma once
-#include "DateTime.h"
+#include "DateAndTime.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -13,6 +13,6 @@ public:
 	string Surname;
 	string Phone;
 	string Email;
-	DateTime DateOfBirth;
-	DateTime DateOfRegistartion;
+	DateAndTime DateOfBirth;
+	DateAndTime DateOfRegistartion;
 };

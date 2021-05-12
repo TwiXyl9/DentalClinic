@@ -1,10 +1,10 @@
-#include "DateTime.h"
+#include "DateAndTime.h"
 
-DateTime::DateTime()
+DateAndTime::DateAndTime()
 {
 }
 
-vector<string> DateTime::GetFields(string dateTime)
+vector<string> DateAndTime::GetFields(string dateTime)
 {
 	vector<string> fields;
 	fields.push_back(to_string(dateTime[0]) + to_string(dateTime[1]));
@@ -17,7 +17,7 @@ vector<string> DateTime::GetFields(string dateTime)
 	return fields;
 }
 
-string DateTime::ToString()
+string DateAndTime::ToString()
 {
 	return  to_string(Days)+"."+to_string(Months)+"."+to_string(Years)+" "+to_string(Hours)+"."+to_string(Minutes)+"."+to_string(Seconds);
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "DateTime.h"
+#include "DateAndTime.h"
 #include<vector>
 #include <string>
 class Ticket
@@ -12,6 +12,6 @@ public:
 	int Id;
 	int PatientCardId;
 	int ServiceId;
-	DateTime DateTime;
+	DateAndTime DateTime;
 	bool IsUsed;
 };

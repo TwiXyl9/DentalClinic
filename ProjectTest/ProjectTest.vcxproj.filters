@@ -45,9 +45,6 @@
     <ClCompile Include="TicketDAO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="DateTime.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="PatientCardDAO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Ticket.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DateAndTime.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,9 +92,6 @@
     <ClInclude Include="TicketDAO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="DateTime.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="PatientCardDAO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -102,6 +99,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Service.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DateAndTime.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

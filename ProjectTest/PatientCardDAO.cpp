@@ -18,7 +18,7 @@ void PatientCardDAO::LoadPatientCards()
 		patientCard.Phone = patientCardFields[3];
 		patientCard.Email = patientCardFields[4];
 
-		auto dateOfBirthFields = DateTime::GetFields(patientCardFields[5]);
+		auto dateOfBirthFields = DateAndTime::GetFields(patientCardFields[5]);
 		patientCard.DateOfBirth.Days = stoi(dateOfBirthFields[0]);
 		patientCard.DateOfBirth.Months = stoi(dateOfBirthFields[1]);
 		patientCard.DateOfBirth.Years = stoi(dateOfBirthFields[2]);
@@ -26,7 +26,7 @@ void PatientCardDAO::LoadPatientCards()
 		patientCard.DateOfBirth.Minutes = stoi(dateOfBirthFields[4]);
 		patientCard.DateOfBirth.Seconds = stoi(dateOfBirthFields[5]);
 		
-		auto dateOfRegistrationFields = DateTime::GetFields(patientCardFields[6]);
+		auto dateOfRegistrationFields = DateAndTime::GetFields(patientCardFields[6]);
 		patientCard.DateOfRegistartion.Days = stoi(dateOfRegistrationFields[0]);
 		patientCard.DateOfRegistartion.Months = stoi(dateOfRegistrationFields[1]);
 		patientCard.DateOfRegistartion.Years = stoi(dateOfRegistrationFields[2]);
