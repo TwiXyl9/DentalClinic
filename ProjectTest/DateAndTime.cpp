@@ -7,12 +7,29 @@ DateAndTime::DateAndTime()
 vector<string> DateAndTime::GetFields(string dateTime)
 {
 	vector<string> fields;
-	fields.push_back(to_string(dateTime[0]) + to_string(dateTime[1]));
-	fields.push_back(to_string(dateTime[3]) + to_string(dateTime[4]));
-	fields.push_back(to_string(dateTime[6]) + to_string(dateTime[7]));
-	fields.push_back(to_string(dateTime[9]) + to_string(dateTime[10]));
-	fields.push_back(to_string(dateTime[12]) + to_string(dateTime[13]));
-	fields.push_back(to_string(dateTime[15]) + to_string(dateTime[16]));
+	string day = "";
+	day = day + dateTime[0] + dateTime[1];
+	fields.push_back(day);
+
+	string month = "";
+	month = month + dateTime[3] + dateTime[4];
+	fields.push_back(month);
+
+	string year = "";
+	year = year + dateTime[6] + dateTime[7];
+	fields.push_back(year);
+
+	string hour = "";
+	hour = hour + dateTime[9] + dateTime[10];
+	fields.push_back(hour);
+	
+	string minute = "";
+	minute = minute + dateTime[12] + dateTime[13];
+	fields.push_back(minute);
+	
+	string second = "";
+	second = second + dateTime[15] + dateTime[16];
+	fields.push_back(second);
 
 	return fields;
 }
