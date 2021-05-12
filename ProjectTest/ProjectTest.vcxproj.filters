@@ -42,25 +42,25 @@
     <ClCompile Include="AddPatientForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\DateTime.cpp">
+    <ClCompile Include="TicketDAO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\PatientCardDAO.cpp">
+    <ClCompile Include="DateTime.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\PatientСard.cpp">
+    <ClCompile Include="PatientCardDAO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\Service.cpp">
+    <ClCompile Include="PatientСard.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\ServiceDAO.cpp">
+    <ClCompile Include="Service.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\Ticket.cpp">
+    <ClCompile Include="ServiceDAO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\TicketDAO.cpp">
+    <ClCompile Include="Ticket.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,25 +83,25 @@
     <ClInclude Include="AddPatientForm.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\DateTime.h">
+    <ClInclude Include="ServiceDAO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\PatientCardDAO.h">
+    <ClInclude Include="Ticket.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\PatientСard.h">
+    <ClInclude Include="TicketDAO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\Service.h">
+    <ClInclude Include="DateTime.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\ServiceDAO.h">
+    <ClInclude Include="PatientCardDAO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\Ticket.h">
+    <ClInclude Include="PatientСard.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\TicketDAO.h">
+    <ClInclude Include="Service.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

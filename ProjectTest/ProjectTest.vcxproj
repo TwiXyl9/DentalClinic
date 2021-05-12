@@ -120,17 +120,17 @@
   <ItemGroup>
     <ClCompile Include="AddPatientForm.cpp" />
     <ClCompile Include="AddServiceForm.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\DateTime.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\PatientCardDAO.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\PatientСard.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\Service.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\ServiceDAO.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\Ticket.cpp" />
-    <ClCompile Include="C:\Users\Lenovo\Desktop\lalall\TicketDAO.cpp" />
+    <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="PatientBaseForm.cpp" />
+    <ClCompile Include="PatientCardDAO.cpp" />
     <ClCompile Include="PatientInfoForm.cpp" />
+    <ClCompile Include="PatientСard.cpp" />
+    <ClCompile Include="Service.cpp" />
+    <ClCompile Include="ServiceDAO.cpp" />
     <ClCompile Include="ServicesForm.cpp" />
+    <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="TicketDAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddPatientForm.h">
@@ -139,25 +139,25 @@
     <ClInclude Include="AddServiceForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\DateTime.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\PatientCardDAO.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\PatientСard.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\Service.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\ServiceDAO.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\Ticket.h" />
-    <ClInclude Include="C:\Users\Lenovo\Desktop\lalall\TicketDAO.h" />
+    <ClInclude Include="DateTime.h" />
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PatientBaseForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PatientCardDAO.h" />
     <ClInclude Include="PatientInfoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PatientСard.h" />
+    <ClInclude Include="Service.h" />
+    <ClInclude Include="ServiceDAO.h" />
     <ClInclude Include="ServicesForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Ticket.h" />
+    <ClInclude Include="TicketDAO.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPatientForm.resx">
