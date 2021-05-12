@@ -16,19 +16,19 @@ vector<string> DateAndTime::GetFields(string dateTime)
 	fields.push_back(month);
 
 	string year = "";
-	year = year + dateTime[6] + dateTime[7];
+	year = year + dateTime[6] + dateTime[7] + dateTime[8] + dateTime[9];
 	fields.push_back(year);
 
 	string hour = "";
-	hour = hour + dateTime[9] + dateTime[10];
+	hour = hour + dateTime[11] + dateTime[12];
 	fields.push_back(hour);
 	
 	string minute = "";
-	minute = minute + dateTime[12] + dateTime[13];
+	minute = minute + dateTime[14] + dateTime[15];
 	fields.push_back(minute);
 	
 	string second = "";
-	second = second + dateTime[15] + dateTime[16];
+	second = second + dateTime[17] + dateTime[18];
 	fields.push_back(second);
 
 	return fields;
@@ -36,5 +36,5 @@ vector<string> DateAndTime::GetFields(string dateTime)
 
 string DateAndTime::ToString()
 {
-	return  to_string(Days)+"."+to_string(Months)+"."+to_string(Years)+" "+to_string(Hours)+"."+to_string(Minutes)+"."+to_string(Seconds);
+	return  to_string(Days)+"."+to_string(Months)+"."+to_string(Years);
 }

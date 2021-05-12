@@ -1,4 +1,5 @@
 #pragma once
+#include "ExceptionBoxForm.h"
 
 namespace ProjectTest {
 
@@ -205,23 +206,37 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	String^ f_name = FirstName_textBox->Text;
 	String^ l_name = LastName_textBox->Text;
 	String^ birth = Birth_dateTimePicker->Value.ToShortDateString();
-	//MessageBoxA(NULL, "Hello World!", "Test", MB_OK);
 	String^ phoneNumber = PhoneNumber_textBox->Text;
 	String^ email = Email_textBox->Text;
 	DateTime date;
 	DateTime registrationDate = date.Now;
 	if (f_name->Length<2) {
-
+		ExceptionBoxForm exceptionBox("Имя введено некорректно!");
+		exceptionBox.ShowDialog();
 	}
-	if (l_name->Length<3) {
-
+	else if (l_name->Length<3) {
+		ExceptionBoxForm exceptionBox("Фамилия введена некорректно!");
+		exceptionBox.ShowDialog();
 	}
-	if (phoneNumber->Length<7) {
-
+	else if (phoneNumber->Length<7) {
+		ExceptionBoxForm exceptionBox("Номер телефона введён некорректно!");
+		exceptionBox.ShowDialog();
 	}
-	if (email->Length<9 && !email->Contains("@")) {
-
+	else if (email->Length<9 && !email->Contains("@")) {
+		ExceptionBoxForm exceptionBox("Email введён некорректно!");
+		exceptionBox.ShowDialog();
 	}
+	else {
+		PatientCard new_card;
+		new_card.Id = ;
+		new_card.Name = f_name;
+		new_card.Surname = l_name;
+		new_card.Phone = phoneNumber;
+		new_card.Email = email;
+		new_card.DateOfBirth = birth;
+		new_card.DateOfRegistartion = ;
+	}
+
 }
 };
 }

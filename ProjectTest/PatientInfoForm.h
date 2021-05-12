@@ -1,5 +1,6 @@
 #pragma once
 #include "PatientCardDAO.h"
+#include "TicketDAO.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -24,6 +25,8 @@ namespace ProjectTest {
 			patientCardDAO = new PatientCardDAO();
 			patientCardDAO->LoadPatientCards();
 			ID = id;
+			ticketDAO = new TicketDAO();
+			ticketDAO->LoadTickets();
 			ShowInfo();
 			//
 			//TODO: добавьте код конструктора
@@ -31,6 +34,7 @@ namespace ProjectTest {
 		}
 		 
 	public: PatientCardDAO* patientCardDAO;
+	public: TicketDAO* ticketDAO;
 	public: 
 		void ShowInfo() {
 			IDBox->Text = gcnew String(ID.ToString());
@@ -39,6 +43,14 @@ namespace ProjectTest {
 			BirthBox->Text = gcnew String(patientCardDAO->PatientCards[ID].DateOfBirth.ToString().c_str());
 			PhoneBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Phone.c_str());
 			EmailBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Email.c_str());
+			RegistrationBox->Text = gcnew String(patientCardDAO->PatientCards[ID].DateOfRegistartion.ToString().c_str());
+
+			for (int i = 0; i < ticketDAO->Tickets.size(); i++)
+			{
+				if (ticketDAO->Tickets[i].PatientCardId == ID) {
+					TicketsListBox->Items->Add(gcnew String(ticketDAO->Tickets[i].DateTime.ToString().c_str()));
+				}
+			}
 		}
 	protected:
 		/// <summary>
@@ -288,6 +300,7 @@ namespace ProjectTest {
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+	this->Hide();
 }
 };
 }
