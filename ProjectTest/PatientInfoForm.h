@@ -29,14 +29,14 @@ namespace ProjectTest {
 			//TODO: добавьте код конструктора
 			//
 		}
-
+		 
 	public: PatientCardDAO* patientCardDAO;
 	public: 
 		void ShowInfo() {
 			IDBox->Text = gcnew String(ID.ToString());
 			NameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Name.c_str());
 			SurnameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Surname.c_str());
-			//BirthBox->Text = gcnew String(patientCardDAO->PatientCards[ID].);
+			BirthBox->Text = gcnew String(patientCardDAO->PatientCards[ID].DateOfBirth.ToString().c_str());
 			PhoneBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Phone.c_str());
 			EmailBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Email.c_str());
 		}

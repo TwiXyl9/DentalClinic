@@ -208,8 +208,8 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	//MessageBoxA(NULL, "Hello World!", "Test", MB_OK);
 	String^ phoneNumber = PhoneNumber_textBox->Text;
 	String^ email = Email_textBox->Text;
-	//DateTime date;
-	//DateTime registrationDate = date.Now;
+	DateTime date;
+	DateTime registrationDate = date.Now;
 	if (f_name->Length<2) {
 
 	}
