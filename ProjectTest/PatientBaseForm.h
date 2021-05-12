@@ -161,6 +161,9 @@ namespace ProjectTest {
 		}
 #pragma endregion
 	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		PatientInfoForm patientInfoForm(e->RowIndex);
+		patientInfoForm.ShowDialog();
+		
 	}
 	private: System::Void AddPatient_Button_Click(System::Object^ sender, System::EventArgs^ e) {
 		AddPatientForm addPatientForm;

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "PatientCardDAO.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -14,15 +14,32 @@ namespace ProjectTest {
 	/// </summary>
 	public ref class PatientInfoForm : public System::Windows::Forms::Form
 	{
+	public: int ID;
 	public:
-		PatientInfoForm(void)
+		PatientInfoForm(int id)
 		{
+
 			InitializeComponent();
+
+			patientCardDAO = new PatientCardDAO();
+			patientCardDAO->LoadPatientCards();
+			ID = id;
+			ShowInfo();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
 
+	public: PatientCardDAO* patientCardDAO;
+	public: 
+		void ShowInfo() {
+			IDBox->Text = gcnew String(ID.ToString());
+			NameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Name.c_str());
+			SurnameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Surname.c_str());
+			//BirthBox->Text = gcnew String(patientCardDAO->PatientCards[ID].);
+			PhoneBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Phone.c_str());
+			EmailBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Email.c_str());
+		}
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -43,16 +60,26 @@ namespace ProjectTest {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ListBox^ ServicesListBox;
+	private: System::Windows::Forms::ListBox^ TicketsListBox;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox4;
-	private: System::Windows::Forms::TextBox^ textBox5;
-	private: System::Windows::Forms::TextBox^ textBox6;
-	private: System::Windows::Forms::TextBox^ textBox7;
-	private: System::Windows::Forms::Button^ button1;
+
+	private: System::Windows::Forms::TextBox^ IDBox;
+	private: System::Windows::Forms::TextBox^ NameBox;
+	private: System::Windows::Forms::TextBox^ SurnameBox;
+	private: System::Windows::Forms::TextBox^ BirthBox;
+	private: System::Windows::Forms::TextBox^ PhoneBox;
+	private: System::Windows::Forms::TextBox^ EmailBox;
+	private: System::Windows::Forms::TextBox^ RegistrationBox;
+	private: System::Windows::Forms::Button^ SaveButton;
+
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -76,15 +103,15 @@ namespace ProjectTest {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->ServicesListBox = (gcnew System::Windows::Forms::ListBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->TicketsListBox = (gcnew System::Windows::Forms::ListBox());
+			this->IDBox = (gcnew System::Windows::Forms::TextBox());
+			this->NameBox = (gcnew System::Windows::Forms::TextBox());
+			this->SurnameBox = (gcnew System::Windows::Forms::TextBox());
+			this->BirthBox = (gcnew System::Windows::Forms::TextBox());
+			this->PhoneBox = (gcnew System::Windows::Forms::TextBox());
+			this->EmailBox = (gcnew System::Windows::Forms::TextBox());
+			this->RegistrationBox = (gcnew System::Windows::Forms::TextBox());
+			this->SaveButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -159,88 +186,88 @@ namespace ProjectTest {
 			this->label8->TabIndex = 7;
 			this->label8->Text = L"Список талонов:";
 			// 
-			// ServicesListBox
+			// TicketsListBox
 			// 
-			this->ServicesListBox->FormattingEnabled = true;
-			this->ServicesListBox->ItemHeight = 16;
-			this->ServicesListBox->Location = System::Drawing::Point(151, 226);
-			this->ServicesListBox->Name = L"ServicesListBox";
-			this->ServicesListBox->Size = System::Drawing::Size(187, 100);
-			this->ServicesListBox->TabIndex = 8;
+			this->TicketsListBox->FormattingEnabled = true;
+			this->TicketsListBox->ItemHeight = 16;
+			this->TicketsListBox->Location = System::Drawing::Point(151, 226);
+			this->TicketsListBox->Name = L"TicketsListBox";
+			this->TicketsListBox->Size = System::Drawing::Size(187, 100);
+			this->TicketsListBox->TabIndex = 8;
 			// 
-			// textBox1
+			// IDBox
 			// 
-			this->textBox1->Location = System::Drawing::Point(151, 23);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(187, 22);
-			this->textBox1->TabIndex = 9;
+			this->IDBox->Location = System::Drawing::Point(151, 23);
+			this->IDBox->Name = L"IDBox";
+			this->IDBox->Size = System::Drawing::Size(187, 22);
+			this->IDBox->TabIndex = 9;
 			// 
-			// textBox2
+			// NameBox
 			// 
-			this->textBox2->Location = System::Drawing::Point(151, 51);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(187, 22);
-			this->textBox2->TabIndex = 10;
+			this->NameBox->Location = System::Drawing::Point(151, 51);
+			this->NameBox->Name = L"NameBox";
+			this->NameBox->Size = System::Drawing::Size(187, 22);
+			this->NameBox->TabIndex = 10;
 			// 
-			// textBox3
+			// SurnameBox
 			// 
-			this->textBox3->Location = System::Drawing::Point(151, 79);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(187, 22);
-			this->textBox3->TabIndex = 11;
+			this->SurnameBox->Location = System::Drawing::Point(151, 79);
+			this->SurnameBox->Name = L"SurnameBox";
+			this->SurnameBox->Size = System::Drawing::Size(187, 22);
+			this->SurnameBox->TabIndex = 11;
 			// 
-			// textBox4
+			// BirthBox
 			// 
-			this->textBox4->Location = System::Drawing::Point(151, 108);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(187, 22);
-			this->textBox4->TabIndex = 12;
+			this->BirthBox->Location = System::Drawing::Point(151, 108);
+			this->BirthBox->Name = L"BirthBox";
+			this->BirthBox->Size = System::Drawing::Size(187, 22);
+			this->BirthBox->TabIndex = 12;
 			// 
-			// textBox5
+			// PhoneBox
 			// 
-			this->textBox5->Location = System::Drawing::Point(151, 138);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(187, 22);
-			this->textBox5->TabIndex = 13;
+			this->PhoneBox->Location = System::Drawing::Point(151, 138);
+			this->PhoneBox->Name = L"PhoneBox";
+			this->PhoneBox->Size = System::Drawing::Size(187, 22);
+			this->PhoneBox->TabIndex = 13;
 			// 
-			// textBox6
+			// EmailBox
 			// 
-			this->textBox6->Location = System::Drawing::Point(151, 166);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(187, 22);
-			this->textBox6->TabIndex = 14;
+			this->EmailBox->Location = System::Drawing::Point(151, 166);
+			this->EmailBox->Name = L"EmailBox";
+			this->EmailBox->Size = System::Drawing::Size(187, 22);
+			this->EmailBox->TabIndex = 14;
 			// 
-			// textBox7
+			// RegistrationBox
 			// 
-			this->textBox7->Location = System::Drawing::Point(151, 194);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(187, 22);
-			this->textBox7->TabIndex = 15;
+			this->RegistrationBox->Location = System::Drawing::Point(151, 194);
+			this->RegistrationBox->Name = L"RegistrationBox";
+			this->RegistrationBox->Size = System::Drawing::Size(187, 22);
+			this->RegistrationBox->TabIndex = 15;
 			// 
-			// button1
+			// SaveButton
 			// 
-			this->button1->Location = System::Drawing::Point(172, 390);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(124, 41);
-			this->button1->TabIndex = 16;
-			this->button1->Text = L"Сохранить";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PatientInfoForm::button1_Click);
+			this->SaveButton->Location = System::Drawing::Point(172, 390);
+			this->SaveButton->Name = L"SaveButton";
+			this->SaveButton->Size = System::Drawing::Size(124, 41);
+			this->SaveButton->TabIndex = 16;
+			this->SaveButton->Text = L"Сохранить";
+			this->SaveButton->UseVisualStyleBackColor = true;
+			this->SaveButton->Click += gcnew System::EventHandler(this, &PatientInfoForm::button1_Click);
 			// 
 			// PatientInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(431, 490);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->ServicesListBox);
+			this->Controls->Add(this->SaveButton);
+			this->Controls->Add(this->RegistrationBox);
+			this->Controls->Add(this->EmailBox);
+			this->Controls->Add(this->PhoneBox);
+			this->Controls->Add(this->BirthBox);
+			this->Controls->Add(this->SurnameBox);
+			this->Controls->Add(this->NameBox);
+			this->Controls->Add(this->IDBox);
+			this->Controls->Add(this->TicketsListBox);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
