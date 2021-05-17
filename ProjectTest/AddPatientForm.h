@@ -1,6 +1,8 @@
 #pragma once
 #include "ExceptionBoxForm.h"
-
+#include <msclr\marshal_cppstd.h>
+#include "PatientÑard.h"
+#include "PatientCardDAO.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -205,7 +207,7 @@ namespace ProjectTest {
 private: System::Void SavePatient_Button_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ f_name = FirstName_textBox->Text;
 	String^ l_name = LastName_textBox->Text;
-	String^ birth = Birth_dateTimePicker->Value.ToShortDateString();
+	DateTime birth = Birth_dateTimePicker->Value;
 	String^ phoneNumber = PhoneNumber_textBox->Text;
 	String^ email = Email_textBox->Text;
 	DateTime date;
@@ -228,13 +230,19 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	}
 	else {
 		PatientCard new_card;
-		new_card.Id = ;
-		new_card.Name = f_name;
-		new_card.Surname = l_name;
-		new_card.Phone = phoneNumber;
-		new_card.Email = email;
-		new_card.DateOfBirth = birth;
-		new_card.DateOfRegistartion = ;
+		PatientCardDAO patientCardDAO; // ÷òî çà íàõóé ñî staticom ?
+		new_card.Id = patientCardDAO.GetNewId();
+		new_card.Name = msclr::interop::marshal_as<std::string>(f_name);
+		new_card.Surname = msclr::interop::marshal_as<std::string>(l_name);
+		new_card.Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
+		new_card.Email = msclr::interop::marshal_as<std::string>(email);
+		DateAndTime new_birth = new_birth.ToDateAndTime(birth); // static...
+		new_card.DateOfBirth = new_birth;
+		DateAndTime new_reg = new_birth.ToDateAndTime(registrationDate);
+		new_card.DateOfRegistartion = new_reg;
+		patientCardDAO.PatientCards.push_back(new_card);
+		patientCardDAO.SavePatientCards();
+		this->Hide();
 	}
 
 }

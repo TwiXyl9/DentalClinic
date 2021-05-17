@@ -54,3 +54,13 @@ void PatientCardDAO::SavePatientCards()
 	}
 	file.close();
 }
+
+int PatientCardDAO::GetNewId() {
+	int new_id = 0;
+	for each (PatientCard patientCard in PatientCards)
+	{
+		if (patientCard.Id > new_id)new_id = patientCard.Id;
+	}
+	new_id++;
+	return new_id;
+}

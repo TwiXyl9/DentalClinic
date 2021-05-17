@@ -14,4 +14,5 @@ public:
 
 	void LoadPatientCards();
 	void SavePatientCards();
+	int GetNewId();
 };

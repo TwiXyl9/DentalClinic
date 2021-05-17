@@ -7,6 +7,7 @@ class DateAndTime
 public:
 	DateAndTime();
 	static vector<string> GetFields(string dateTime);
+	static DateAndTime ToDateAndTime(System::DateTime dateTime);
 	string ToString();
 	int Seconds;
 	int Minutes;
