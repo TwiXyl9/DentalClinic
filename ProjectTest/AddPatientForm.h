@@ -3,6 +3,7 @@
 #include <msclr\marshal_cppstd.h>
 #include "PatientСard.h"
 #include "PatientCardDAO.h"
+#include "DataRepository.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -17,14 +18,16 @@ namespace ProjectTest {
 	/// </summary>
 	public ref class AddPatientForm : public System::Windows::Forms::Form
 	{
+
+	public: PatientCardDAO* patientCardDAO;
 	public:
-		AddPatientForm(void)
+		AddPatientForm()
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			
+			
 		}
+
 
 	protected:
 		/// <summary>
@@ -230,18 +233,18 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	}
 	else {
 		PatientCard new_card;
-		PatientCardDAO patientCardDAO; // что за нахуй со staticom ?
-		new_card.Id = patientCardDAO.GetNewId();
+		
+		new_card.Id = DataRepository::patientCardDAO.GetNewId();
 		new_card.Name = msclr::interop::marshal_as<std::string>(f_name);
 		new_card.Surname = msclr::interop::marshal_as<std::string>(l_name);
 		new_card.Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
 		new_card.Email = msclr::interop::marshal_as<std::string>(email);
-		DateAndTime new_birth = new_birth.ToDateAndTime(birth); // static...
+		DateAndTime new_birth = DateAndTime::ToDateAndTime(birth); 
 		new_card.DateOfBirth = new_birth;
 		DateAndTime new_reg = new_birth.ToDateAndTime(registrationDate);
 		new_card.DateOfRegistartion = new_reg;
-		patientCardDAO.PatientCards.push_back(new_card);
-		patientCardDAO.SavePatientCards();
+		DataRepository::patientCardDAO.PatientCards.push_back(new_card);
+		DataRepository::patientCardDAO.SavePatientCards();
 		this->Hide();
 	}
 

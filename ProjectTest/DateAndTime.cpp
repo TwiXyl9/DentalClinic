@@ -4,32 +4,54 @@ DateAndTime::DateAndTime()
 {
 }
 
-vector<string> DateAndTime::GetFields(string dateTime)
+vector<string> DateAndTime::GetDateFields(string dateTime)
 {
 	vector<string> fields;
-	string day = "";
-	day = day + dateTime[0] + dateTime[1];
-	fields.push_back(day);
 
-	string month = "";
-	month = month + dateTime[3] + dateTime[4];
-	fields.push_back(month);
+	string field = "";
 
-	string year = "";
-	year = year + dateTime[6] + dateTime[7] + dateTime[8] + dateTime[9];
-	fields.push_back(year);
+	for (int i = 0; ; i++)
+	{
+		if (dateTime[i] == '.')
+		{
+			fields.push_back(field);
+			field = "";
+			continue;
+		}
+		else if(dateTime[i] == '\0')
+		{
+			fields.push_back(field);
+			field = "";
+			break;
+		}
+		field += dateTime[i];
+	}
 
-	string hour = "";
-	hour = hour + dateTime[11] + dateTime[12];
-	fields.push_back(hour);
-	
-	string minute = "";
-	minute = minute + dateTime[14] + dateTime[15];
-	fields.push_back(minute);
-	
-	string second = "";
-	second = second + dateTime[17] + dateTime[18];
-	fields.push_back(second);
+	return fields;
+}
+
+vector<string> DateAndTime::GetDateAndTimeFields(string dateTime)
+{
+	vector<string> fields;
+
+	string field = "";
+
+	for (int i = 0; ; i++)
+	{
+		if (dateTime[i] == '.' || dateTime[i] == ' ')
+		{
+			fields.push_back(field);
+			field = "";
+			continue;
+		}
+		else if (dateTime[i] == '\0')
+		{
+			fields.push_back(field);
+			field = "";
+			break;
+		}
+		field += dateTime[i];
+	}
 
 	return fields;
 }

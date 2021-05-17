@@ -4,6 +4,7 @@
 #include "AddPatientForm.h"
 #include "PatientCardDAO.h"
 #include "Patient—ard.h"
+#include "DataRepository.h"
 #include <string>
 
 namespace ProjectTest {
@@ -24,8 +25,6 @@ namespace ProjectTest {
 		PatientBaseForm(void)
 		{
 			InitializeComponent();
-			patientCardDAO = new PatientCardDAO();
-			patientCardDAO->LoadPatientCards();
 			ShowData();
 			
 			//
@@ -37,14 +36,17 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 
-	public: PatientCardDAO* patientCardDAO;
 	public:
 		void ShowData() {
-			for (int i = 0; i < patientCardDAO->PatientCards.size(); i++)
+
+			dataGridView1->Rows->Clear();
+
+			for (int i = 0; i < DataRepository::patientCardDAO.PatientCards.size(); i++)
 			{				
-				String^ Name = gcnew String(patientCardDAO->PatientCards[i].Name.c_str());
-				String^ Surname = gcnew String(patientCardDAO->PatientCards[i].Surname.c_str());
-				dataGridView1->Rows->Add(i+1, Name, Surname);
+				String^ Name = gcnew String(DataRepository::patientCardDAO.PatientCards[i].Name.c_str());
+				String^ Surname = gcnew String(DataRepository::patientCardDAO.PatientCards[i].Surname.c_str());
+				String^ Id = gcnew String(to_string(DataRepository::patientCardDAO.PatientCards[i].Id).c_str());
+				dataGridView1->Rows->Add(Id, Name, Surname);
 			}
 		}
 	protected:
@@ -163,12 +165,13 @@ namespace ProjectTest {
 	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		PatientInfoForm patientInfoForm(e->RowIndex);
 		patientInfoForm.ShowDialog();
+		ShowData();
 		
 	}
 	private: System::Void AddPatient_Button_Click(System::Object^ sender, System::EventArgs^ e) {
 		AddPatientForm addPatientForm;
 		addPatientForm.ShowDialog();
-
+		ShowData();
 	}
 };
 }

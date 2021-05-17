@@ -2,6 +2,7 @@
 #include "PatientBaseForm.h"
 #include "ServicesForm.h"
 #include "PatientCardDAO.h"
+#include "DataRepository.h"
 
 namespace ProjectTest {
 
@@ -23,13 +24,14 @@ namespace ProjectTest {
 		MenuForm(void)
 		{
 			InitializeComponent();
-			patientCardDAO = new PatientCardDAO();
-			patientCardDAO->LoadPatientCards();
+			DataRepository::patientCardDAO.LoadPatientCards();
+			DataRepository::serviceDAO.LoadServices();
+			DataRepository::ticketDAO.LoadTickets();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
-	public: PatientCardDAO* patientCardDAO;
+
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.

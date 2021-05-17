@@ -1,5 +1,8 @@
 #pragma once
-
+#include <msclr\marshal_cppstd.h>
+#include "DataRepository.h"
+#include "ExceptionBoxForm.h"
+#include "Service.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -90,6 +93,7 @@ namespace ProjectTest {
 			this->AddService_Button->TabIndex = 2;
 			this->AddService_Button->Text = L"Добавить";
 			this->AddService_Button->UseVisualStyleBackColor = true;
+			this->AddService_Button->Click += gcnew System::EventHandler(this, &AddServiceForm::AddService_Button_Click);
 			// 
 			// textBox1
 			// 
@@ -134,5 +138,36 @@ namespace ProjectTest {
 
 		}
 #pragma endregion
+private: System::Void AddService_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+	string title = msclr::interop::marshal_as<std::string>(textBox1->Text);
+	float price;
+	try {
+		price = stof(msclr::interop::marshal_as<std::string>(textBox2->Text));
+	}
+	catch(exception ex) {
+		ExceptionBoxForm("Enter correct price!").ShowDialog();
+		return;
+	}
+
+	if (title.size() == 0)
+	{
+		ExceptionBoxForm("Enter correct title!").ShowDialog();
+	}
+	else if(price < 0)
+	{
+		ExceptionBoxForm("Enter correct price!").ShowDialog();
+	}
+	else
+	{
+		Service service;
+		service.Price = price;
+		service.Title = title;
+		service.Id = DataRepository::serviceDAO.GetNewId();
+		DataRepository::serviceDAO.Services.push_back(service);
+		DataRepository::serviceDAO.SaveServices();
+		this->Hide();
+	}
+	
+}
 };
 }

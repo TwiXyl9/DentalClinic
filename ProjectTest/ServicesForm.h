@@ -1,5 +1,6 @@
 #pragma once
 #include "AddServiceForm.h"
+#include "DataRepository.h"
 
 namespace ProjectTest {
 
@@ -19,11 +20,30 @@ namespace ProjectTest {
 		ServicesForm(void)
 		{
 			InitializeComponent();
+			ShowData();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
 
+
+	public:
+		void ShowData() {
+
+			dataGridView1->Rows->Clear();
+
+			for (int i = 0; i < DataRepository::serviceDAO.Services.size(); i++)
+			{
+				String^ Title = gcnew String(DataRepository::serviceDAO.Services[i].Title.c_str());
+				String^ Price = gcnew String(to_string(DataRepository::serviceDAO.Services[i].Price).c_str());
+				dataGridView1->Rows->Add(Title, Price);
+			}
+		}
+
+
+		/*String^ Title = gcnew String(DataRepository::serviceDAO.Services[i].Title.c_str());
+		String^ Price = gcnew String(to_string(DataRepository::serviceDAO.Services[i].Price).c_str());
+		dataGridView1->Rows->Add(Title, Price);*/
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -76,10 +96,13 @@ namespace ProjectTest {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(36, 124);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
+			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(503, 282);
 			this->dataGridView1->TabIndex = 0;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ServicesForm::dataGridView1_CellContentClick);
 			// 
 			// Column1
 			// 
@@ -126,6 +149,10 @@ namespace ProjectTest {
 	private: System::Void AddService_Button_Click(System::Object^ sender, System::EventArgs^ e) {
 		AddServiceForm addServiceForm;
 		addServiceForm.ShowDialog();
+		ShowData();
 	}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+}
 };
 }

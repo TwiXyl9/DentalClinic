@@ -13,6 +13,7 @@ public:
 
 	void LoadServices();
 	void SaveServices();
+	int GetNewId();
 
 	vector<Service> Services;
 };

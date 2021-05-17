@@ -33,3 +33,17 @@ void ServiceDAO::SaveServices()
 	}
 	file.close();
 }
+
+int ServiceDAO::GetNewId()
+{
+	int new_id = 0;
+	for each (Service service in Services)
+	{
+		new_id = service.Id;
+	}
+	new_id++;
+	return new_id;
+}
+
+
+

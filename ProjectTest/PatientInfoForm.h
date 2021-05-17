@@ -1,6 +1,9 @@
 #pragma once
 #include "PatientCardDAO.h"
 #include "TicketDAO.h"
+#include "DataRepository.h"
+#include <msclr\marshal_cppstd.h>
+#include "ExceptionBoxForm.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -21,34 +24,29 @@ namespace ProjectTest {
 		{
 
 			InitializeComponent();
-
-			patientCardDAO = new PatientCardDAO();
-			patientCardDAO->LoadPatientCards();
 			ID = id;
-			ticketDAO = new TicketDAO();
-			ticketDAO->LoadTickets();
 			ShowInfo();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
 		 
-	public: PatientCardDAO* patientCardDAO;
-	public: TicketDAO* ticketDAO;
 	public: 
 		void ShowInfo() {
-			IDBox->Text = gcnew String(ID.ToString());
-			NameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Name.c_str());
-			SurnameBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Surname.c_str());
-			BirthBox->Text = gcnew String(patientCardDAO->PatientCards[ID].DateOfBirth.ToString().c_str());
-			PhoneBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Phone.c_str());
-			EmailBox->Text = gcnew String(patientCardDAO->PatientCards[ID].Email.c_str());
-			RegistrationBox->Text = gcnew String(patientCardDAO->PatientCards[ID].DateOfRegistartion.ToString().c_str());
+			IDBox->Text = gcnew String(to_string(DataRepository::patientCardDAO.PatientCards[ID].Id).c_str());
+			NameBox->Text = gcnew String(DataRepository::patientCardDAO.PatientCards[ID].Name.c_str());
+			SurnameBox->Text = gcnew String(DataRepository::patientCardDAO.PatientCards[ID].Surname.c_str());
+			BirthPicker->Value = DateTime(DataRepository::patientCardDAO.PatientCards[ID].DateOfBirth.Years,
+				DataRepository::patientCardDAO.PatientCards[ID].DateOfBirth.Months,
+				DataRepository::patientCardDAO.PatientCards[ID].DateOfBirth.Days);
+			PhoneBox->Text = gcnew String(DataRepository::patientCardDAO.PatientCards[ID].Phone.c_str());
+			EmailBox->Text = gcnew String(DataRepository::patientCardDAO.PatientCards[ID].Email.c_str());
+			RegistrationBox->Text = gcnew String(DataRepository::patientCardDAO.PatientCards[ID].DateOfRegistartion.ToString().c_str());
 
-			for (int i = 0; i < ticketDAO->Tickets.size(); i++)
+			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 			{
-				if (ticketDAO->Tickets[i].PatientCardId == ID) {
-					TicketsListBox->Items->Add(gcnew String(ticketDAO->Tickets[i].DateTime.ToString().c_str()));
+				if (DataRepository::ticketDAO.Tickets[i].PatientCardId == ID) {
+					TicketsListBox->Items->Add(gcnew String(DataRepository::ticketDAO.Tickets[i].DateTime.ToString().c_str()));
 				}
 			}
 		}
@@ -78,11 +76,14 @@ namespace ProjectTest {
 	private: System::Windows::Forms::TextBox^ IDBox;
 	private: System::Windows::Forms::TextBox^ NameBox;
 	private: System::Windows::Forms::TextBox^ SurnameBox;
-	private: System::Windows::Forms::TextBox^ BirthBox;
+
 	private: System::Windows::Forms::TextBox^ PhoneBox;
 	private: System::Windows::Forms::TextBox^ EmailBox;
-	private: System::Windows::Forms::TextBox^ RegistrationBox;
+
 	private: System::Windows::Forms::Button^ SaveButton;
+	private: System::Windows::Forms::DateTimePicker^ BirthPicker;
+	private: System::Windows::Forms::TextBox^ RegistrationBox;
+
 
 
 
@@ -119,11 +120,11 @@ namespace ProjectTest {
 			this->IDBox = (gcnew System::Windows::Forms::TextBox());
 			this->NameBox = (gcnew System::Windows::Forms::TextBox());
 			this->SurnameBox = (gcnew System::Windows::Forms::TextBox());
-			this->BirthBox = (gcnew System::Windows::Forms::TextBox());
 			this->PhoneBox = (gcnew System::Windows::Forms::TextBox());
 			this->EmailBox = (gcnew System::Windows::Forms::TextBox());
-			this->RegistrationBox = (gcnew System::Windows::Forms::TextBox());
 			this->SaveButton = (gcnew System::Windows::Forms::Button());
+			this->BirthPicker = (gcnew System::Windows::Forms::DateTimePicker());
+			this->RegistrationBox = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -228,13 +229,6 @@ namespace ProjectTest {
 			this->SurnameBox->Size = System::Drawing::Size(187, 22);
 			this->SurnameBox->TabIndex = 11;
 			// 
-			// BirthBox
-			// 
-			this->BirthBox->Location = System::Drawing::Point(151, 108);
-			this->BirthBox->Name = L"BirthBox";
-			this->BirthBox->Size = System::Drawing::Size(187, 22);
-			this->BirthBox->TabIndex = 12;
-			// 
 			// PhoneBox
 			// 
 			this->PhoneBox->Location = System::Drawing::Point(151, 138);
@@ -249,13 +243,6 @@ namespace ProjectTest {
 			this->EmailBox->Size = System::Drawing::Size(187, 22);
 			this->EmailBox->TabIndex = 14;
 			// 
-			// RegistrationBox
-			// 
-			this->RegistrationBox->Location = System::Drawing::Point(151, 194);
-			this->RegistrationBox->Name = L"RegistrationBox";
-			this->RegistrationBox->Size = System::Drawing::Size(187, 22);
-			this->RegistrationBox->TabIndex = 15;
-			// 
 			// SaveButton
 			// 
 			this->SaveButton->Location = System::Drawing::Point(172, 390);
@@ -266,16 +253,31 @@ namespace ProjectTest {
 			this->SaveButton->UseVisualStyleBackColor = true;
 			this->SaveButton->Click += gcnew System::EventHandler(this, &PatientInfoForm::button1_Click);
 			// 
+			// BirthPicker
+			// 
+			this->BirthPicker->Location = System::Drawing::Point(151, 108);
+			this->BirthPicker->Name = L"BirthPicker";
+			this->BirthPicker->Size = System::Drawing::Size(186, 22);
+			this->BirthPicker->TabIndex = 17;
+			// 
+			// RegistrationBox
+			// 
+			this->RegistrationBox->Enabled = false;
+			this->RegistrationBox->Location = System::Drawing::Point(151, 194);
+			this->RegistrationBox->Name = L"RegistrationBox";
+			this->RegistrationBox->Size = System::Drawing::Size(187, 22);
+			this->RegistrationBox->TabIndex = 15;
+			// 
 			// PatientInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(431, 490);
+			this->Controls->Add(this->BirthPicker);
 			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->RegistrationBox);
 			this->Controls->Add(this->EmailBox);
 			this->Controls->Add(this->PhoneBox);
-			this->Controls->Add(this->BirthBox);
 			this->Controls->Add(this->SurnameBox);
 			this->Controls->Add(this->NameBox);
 			this->Controls->Add(this->IDBox);
@@ -300,7 +302,45 @@ namespace ProjectTest {
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	this->Hide();
+	String^ f_name = NameBox->Text;
+	String^ l_name = SurnameBox->Text;
+	DateTime birth = BirthPicker->Value;
+	String^ phoneNumber = PhoneBox->Text;
+	String^ email = EmailBox->Text;
+	DateTime date;
+	DateTime registrationDate = date.Now;
+	if (f_name->Length < 2) {
+		ExceptionBoxForm exceptionBox("Имя введено некорректно!");
+		exceptionBox.ShowDialog();
+	}
+	else if (l_name->Length < 3) {
+		ExceptionBoxForm exceptionBox("Фамилия введена некорректно!");
+		exceptionBox.ShowDialog();
+	}
+	else if (phoneNumber->Length < 7) {
+		ExceptionBoxForm exceptionBox("Номер телефона введён некорректно!");
+		exceptionBox.ShowDialog();
+	}
+	else if (email->Length < 9 && !email->Contains("@")) {
+		ExceptionBoxForm exceptionBox("Email введён некорректно!");
+		exceptionBox.ShowDialog();
+	}
+	else {
+		PatientCard new_card;
+
+		new_card.Id = DataRepository::patientCardDAO.GetNewId();
+		new_card.Name = msclr::interop::marshal_as<std::string>(f_name);
+		new_card.Surname = msclr::interop::marshal_as<std::string>(l_name);
+		new_card.Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
+		new_card.Email = msclr::interop::marshal_as<std::string>(email);
+		DateAndTime new_birth = DateAndTime::ToDateAndTime(birth);
+		new_card.DateOfBirth = new_birth;
+		DateAndTime new_reg = new_birth.ToDateAndTime(registrationDate);
+		new_card.DateOfRegistartion = new_reg;
+		DataRepository::patientCardDAO.PatientCards[ID] = new_card;
+		DataRepository::patientCardDAO.SavePatientCards();
+		this->Hide();
+	}
 }
 };
 }

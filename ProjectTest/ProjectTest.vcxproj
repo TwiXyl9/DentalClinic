@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="AddPatientForm.cpp" />
     <ClCompile Include="AddServiceForm.cpp" />
+    <ClCompile Include="DataRepository.cpp" />
     <ClCompile Include="DateAndTime.cpp" />
     <ClCompile Include="ExceptionBoxForm.cpp" />
     <ClCompile Include="MenuForm.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="AddServiceForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="DataRepository.h" />
     <ClInclude Include="DateAndTime.h" />
     <ClInclude Include="ExceptionBoxForm.h">
       <FileType>CppForm</FileType>
