@@ -1,2 +1,1 @@
-1;Delete skin from zalupa;10;
 2;kursovaya;100;

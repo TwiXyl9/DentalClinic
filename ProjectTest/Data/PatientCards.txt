@@ -1,3 +1,2 @@
-2;Dima;Karkanitsa;+375296701698;aakarkanica@gmail.com;12.22.2222;12.22.2222;
-5;NUlian;Molodets;+callHim;callHim@mail.ru;15.10.2014;18.5.2021;
-4;Novi;User;+444444444;OhAh@mail.ru;18.5.2021;18.5.2021;
+5;DImka;Ebat tebia v rot;+375292347001;durak@mail.ru;5.5.2021;18.5.2021;
+6;Maksim;vich;+37566666666;666@mail.ru;9.8.2006;18.5.2021;

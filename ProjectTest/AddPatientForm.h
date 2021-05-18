@@ -98,7 +98,7 @@ namespace ProjectTest {
 			this->SavePatient_Button->Name = L"SavePatient_Button";
 			this->SavePatient_Button->Size = System::Drawing::Size(124, 41);
 			this->SavePatient_Button->TabIndex = 33;
-			this->SavePatient_Button->Text = L"Сохранить";
+			this->SavePatient_Button->Text = L"Save";
 			this->SavePatient_Button->UseVisualStyleBackColor = true;
 			this->SavePatient_Button->Click += gcnew System::EventHandler(this, &AddPatientForm::SavePatient_Button_Click);
 			// 
@@ -142,38 +142,38 @@ namespace ProjectTest {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(108, 171);
+			this->label5->Location = System::Drawing::Point(122, 171);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(72, 17);
+			this->label5->Size = System::Drawing::Size(53, 17);
 			this->label5->TabIndex = 21;
-			this->label5->Text = L"Телефон:";
+			this->label5->Text = L"Phone:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(66, 126);
+			this->label4->Location = System::Drawing::Point(111, 126);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(115, 17);
+			this->label4->Size = System::Drawing::Size(64, 17);
 			this->label4->TabIndex = 20;
-			this->label4->Text = L"Дата рождения:";
+			this->label4->Text = L"Birthday:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(106, 78);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(74, 17);
+			this->label3->Size = System::Drawing::Size(69, 17);
 			this->label3->TabIndex = 19;
-			this->label3->Text = L"Фамилия:";
+			this->label3->Text = L"Surname:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(141, 34);
+			this->label2->Location = System::Drawing::Point(122, 36);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(39, 17);
+			this->label2->Size = System::Drawing::Size(49, 17);
 			this->label2->TabIndex = 18;
-			this->label2->Text = L"Имя:";
+			this->label2->Text = L"Name:";
 			// 
 			// Birth_dateTimePicker
 			// 

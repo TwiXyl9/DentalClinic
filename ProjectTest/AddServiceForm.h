@@ -70,20 +70,20 @@ namespace ProjectTest {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(44, 44);
+			this->label1->Location = System::Drawing::Point(110, 47);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(122, 17);
+			this->label1->Size = System::Drawing::Size(39, 17);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Название услуги:";
+			this->label1->Text = L"TItle:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(84, 78);
+			this->label2->Location = System::Drawing::Point(105, 78);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(82, 17);
+			this->label2->Size = System::Drawing::Size(44, 17);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Стоимость:";
+			this->label2->Text = L"Price:";
 			// 
 			// AddService_Button
 			// 
@@ -91,7 +91,7 @@ namespace ProjectTest {
 			this->AddService_Button->Name = L"AddService_Button";
 			this->AddService_Button->Size = System::Drawing::Size(94, 33);
 			this->AddService_Button->TabIndex = 2;
-			this->AddService_Button->Text = L"Добавить";
+			this->AddService_Button->Text = L"Add";
 			this->AddService_Button->UseVisualStyleBackColor = true;
 			this->AddService_Button->Click += gcnew System::EventHandler(this, &AddServiceForm::AddService_Button_Click);
 			// 
@@ -122,7 +122,7 @@ namespace ProjectTest {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(376, 181);
+			this->ClientSize = System::Drawing::Size(399, 181);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);

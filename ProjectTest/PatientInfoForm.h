@@ -83,6 +83,7 @@ namespace ProjectTest {
 	private: System::Windows::Forms::Button^ SaveButton;
 	private: System::Windows::Forms::DateTimePicker^ BirthPicker;
 	private: System::Windows::Forms::TextBox^ RegistrationBox;
+	private: System::Windows::Forms::Button^ DeleteButton;
 
 
 
@@ -125,6 +126,7 @@ namespace ProjectTest {
 			this->SaveButton = (gcnew System::Windows::Forms::Button());
 			this->BirthPicker = (gcnew System::Windows::Forms::DateTimePicker());
 			this->RegistrationBox = (gcnew System::Windows::Forms::TextBox());
+			this->DeleteButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -139,38 +141,38 @@ namespace ProjectTest {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(106, 50);
+			this->label2->Location = System::Drawing::Point(96, 51);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(39, 17);
+			this->label2->Size = System::Drawing::Size(49, 17);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Имя:";
+			this->label2->Text = L"Name:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(71, 76);
+			this->label3->Location = System::Drawing::Point(76, 79);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(74, 17);
+			this->label3->Size = System::Drawing::Size(69, 17);
 			this->label3->TabIndex = 2;
-			this->label3->Text = L"Фамилия:";
+			this->label3->Text = L"Surname:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(30, 108);
+			this->label4->Location = System::Drawing::Point(81, 108);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(115, 17);
+			this->label4->Size = System::Drawing::Size(64, 17);
 			this->label4->TabIndex = 3;
-			this->label4->Text = L"Дата рождения:";
+			this->label4->Text = L"Birthday:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(73, 137);
+			this->label5->Location = System::Drawing::Point(92, 138);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(72, 17);
+			this->label5->Size = System::Drawing::Size(53, 17);
 			this->label5->TabIndex = 4;
-			this->label5->Text = L"Телефон:";
+			this->label5->Text = L"Phone:";
 			// 
 			// label6
 			// 
@@ -184,20 +186,20 @@ namespace ProjectTest {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(12, 193);
+			this->label7->Location = System::Drawing::Point(30, 194);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(133, 17);
+			this->label7->Size = System::Drawing::Size(115, 17);
 			this->label7->TabIndex = 6;
-			this->label7->Text = L"Дата регистрации:";
+			this->label7->Text = L"Registration day:";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(28, 226);
+			this->label8->Location = System::Drawing::Point(67, 226);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(117, 17);
+			this->label8->Size = System::Drawing::Size(78, 17);
 			this->label8->TabIndex = 7;
-			this->label8->Text = L"Список талонов:";
+			this->label8->Text = L"Tickets list:";
 			// 
 			// TicketsListBox
 			// 
@@ -210,9 +212,10 @@ namespace ProjectTest {
 			// 
 			// IDBox
 			// 
+			this->IDBox->Enabled = false;
 			this->IDBox->Location = System::Drawing::Point(151, 23);
 			this->IDBox->Name = L"IDBox";
-			this->IDBox->Size = System::Drawing::Size(187, 22);
+			this->IDBox->Size = System::Drawing::Size(38, 22);
 			this->IDBox->TabIndex = 9;
 			// 
 			// NameBox
@@ -245,11 +248,11 @@ namespace ProjectTest {
 			// 
 			// SaveButton
 			// 
-			this->SaveButton->Location = System::Drawing::Point(172, 390);
+			this->SaveButton->Location = System::Drawing::Point(172, 365);
 			this->SaveButton->Name = L"SaveButton";
 			this->SaveButton->Size = System::Drawing::Size(124, 41);
 			this->SaveButton->TabIndex = 16;
-			this->SaveButton->Text = L"Сохранить";
+			this->SaveButton->Text = L"Save";
 			this->SaveButton->UseVisualStyleBackColor = true;
 			this->SaveButton->Click += gcnew System::EventHandler(this, &PatientInfoForm::button1_Click);
 			// 
@@ -268,11 +271,22 @@ namespace ProjectTest {
 			this->RegistrationBox->Size = System::Drawing::Size(187, 22);
 			this->RegistrationBox->TabIndex = 15;
 			// 
+			// DeleteButton
+			// 
+			this->DeleteButton->Location = System::Drawing::Point(172, 421);
+			this->DeleteButton->Name = L"DeleteButton";
+			this->DeleteButton->Size = System::Drawing::Size(124, 40);
+			this->DeleteButton->TabIndex = 18;
+			this->DeleteButton->Text = L"Delete";
+			this->DeleteButton->UseVisualStyleBackColor = true;
+			this->DeleteButton->Click += gcnew System::EventHandler(this, &PatientInfoForm::DeleteButton_Click);
+			// 
 			// PatientInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(431, 490);
+			this->Controls->Add(this->DeleteButton);
 			this->Controls->Add(this->BirthPicker);
 			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->RegistrationBox);
@@ -328,7 +342,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	else {
 		PatientCard new_card;
 
-		new_card.Id = DataRepository::patientCardDAO.GetNewId();
+		new_card.Id = DataRepository::patientCardDAO.PatientCards[ID].Id;
 		new_card.Name = msclr::interop::marshal_as<std::string>(f_name);
 		new_card.Surname = msclr::interop::marshal_as<std::string>(l_name);
 		new_card.Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
@@ -341,6 +355,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		DataRepository::patientCardDAO.SavePatientCards();
 		this->Hide();
 	}
+}
+private: System::Void DeleteButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	DataRepository::patientCardDAO.PatientCards.erase(DataRepository::patientCardDAO.PatientCards.begin() + ID);
+	DataRepository::patientCardDAO.SavePatientCards();
+	this->Hide();
 }
 };
 }

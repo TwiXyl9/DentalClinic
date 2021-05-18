@@ -71,6 +71,9 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 
 
+
+
+
 	protected:
 
 	protected:
@@ -94,13 +97,13 @@ namespace ProjectTest {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuForm::typeid));
 			this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
 			this->PatientGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->PatientSearchBox = (gcnew System::Windows::Forms::TextBox());
 			this->PatientBase_Button = (gcnew System::Windows::Forms::Button());
 			this->ServicesList_Button = (gcnew System::Windows::Forms::Button());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -156,38 +159,14 @@ namespace ProjectTest {
 			this->PatientGridView->Size = System::Drawing::Size(377, 424);
 			this->PatientGridView->TabIndex = 7;
 			// 
-			// Column1
-			// 
-			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column1->HeaderText = L"Имя";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->ReadOnly = true;
-			// 
-			// Column3
-			// 
-			this->Column3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column3->HeaderText = L"Фамилия";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->ReadOnly = true;
-			// 
-			// Column2
-			// 
-			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->HeaderText = L"Статус";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->ReadOnly = true;
-			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(229, 209);
+			this->label1->Location = System::Drawing::Point(219, 209);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(56, 17);
+			this->label1->Size = System::Drawing::Size(61, 17);
 			this->label1->TabIndex = 8;
-			this->label1->Text = L"Поиск: ";
+			this->label1->Text = L"Search: ";
 			// 
 			// PatientSearchBox
 			// 
@@ -202,7 +181,7 @@ namespace ProjectTest {
 			this->PatientBase_Button->Name = L"PatientBase_Button";
 			this->PatientBase_Button->Size = System::Drawing::Size(377, 53);
 			this->PatientBase_Button->TabIndex = 10;
-			this->PatientBase_Button->Text = L"База Пользователей";
+			this->PatientBase_Button->Text = L"Patients Base";
 			this->PatientBase_Button->UseVisualStyleBackColor = true;
 			this->PatientBase_Button->Click += gcnew System::EventHandler(this, &MenuForm::PatientBase_Button_Click_1);
 			// 
@@ -212,9 +191,33 @@ namespace ProjectTest {
 			this->ServicesList_Button->Name = L"ServicesList_Button";
 			this->ServicesList_Button->Size = System::Drawing::Size(377, 55);
 			this->ServicesList_Button->TabIndex = 11;
-			this->ServicesList_Button->Text = L"Список услуг";
+			this->ServicesList_Button->Text = L"List of Services";
 			this->ServicesList_Button->UseVisualStyleBackColor = true;
 			this->ServicesList_Button->Click += gcnew System::EventHandler(this, &MenuForm::ServicesList_Button_Click);
+			// 
+			// Column1
+			// 
+			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column1->HeaderText = L"Name";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->ReadOnly = true;
+			// 
+			// Column3
+			// 
+			this->Column3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column3->HeaderText = L"Surname";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->ReadOnly = true;
+			// 
+			// Column2
+			// 
+			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Column2->HeaderText = L"Status";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->ReadOnly = true;
 			// 
 			// MenuForm
 			// 

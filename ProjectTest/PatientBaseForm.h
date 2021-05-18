@@ -31,10 +31,10 @@ namespace ProjectTest {
 			//TODO: добавьте код конструктора
 			//
 		}
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
+
 	public:
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+
+
 
 	public:
 		void ShowData() {
@@ -62,6 +62,9 @@ namespace ProjectTest {
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ AddPatient_Button;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	protected:
 
 
@@ -119,7 +122,7 @@ namespace ProjectTest {
 			this->AddPatient_Button->Name = L"AddPatient_Button";
 			this->AddPatient_Button->Size = System::Drawing::Size(405, 43);
 			this->AddPatient_Button->TabIndex = 1;
-			this->AddPatient_Button->Text = L"Добавить";
+			this->AddPatient_Button->Text = L"Add";
 			this->AddPatient_Button->UseVisualStyleBackColor = true;
 			this->AddPatient_Button->Click += gcnew System::EventHandler(this, &PatientBaseForm::AddPatient_Button_Click);
 			// 
@@ -133,7 +136,7 @@ namespace ProjectTest {
 			// Column1
 			// 
 			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column1->HeaderText = L"Имя:";
+			this->Column1->HeaderText = L"Name:";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
 			this->Column1->ReadOnly = true;
@@ -141,7 +144,7 @@ namespace ProjectTest {
 			// Column2
 			// 
 			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->HeaderText = L"Фамилия:";
+			this->Column2->HeaderText = L"Surname:";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
 			this->Column2->ReadOnly = true;

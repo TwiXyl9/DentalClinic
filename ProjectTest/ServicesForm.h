@@ -1,6 +1,7 @@
 #pragma once
 #include "AddServiceForm.h"
 #include "DataRepository.h"
+#include "ServiceInfoForm.h"
 
 namespace ProjectTest {
 
@@ -56,9 +57,11 @@ namespace ProjectTest {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
+
+	private: System::Windows::Forms::Button^ AddService_Button;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::Button^ AddService_Button;
 	protected:
 
 
@@ -81,9 +84,9 @@ namespace ProjectTest {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ServicesForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->AddService_Button = (gcnew System::Windows::Forms::Button());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->AddService_Button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -104,10 +107,20 @@ namespace ProjectTest {
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ServicesForm::dataGridView1_CellContentClick);
 			// 
+			// AddService_Button
+			// 
+			this->AddService_Button->Location = System::Drawing::Point(36, 41);
+			this->AddService_Button->Name = L"AddService_Button";
+			this->AddService_Button->Size = System::Drawing::Size(503, 49);
+			this->AddService_Button->TabIndex = 2;
+			this->AddService_Button->Text = L"Add";
+			this->AddService_Button->UseVisualStyleBackColor = true;
+			this->AddService_Button->Click += gcnew System::EventHandler(this, &ServicesForm::AddService_Button_Click);
+			// 
 			// Column1
 			// 
 			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column1->HeaderText = L"Название:";
+			this->Column1->HeaderText = L"Title:";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
 			this->Column1->ReadOnly = true;
@@ -115,20 +128,10 @@ namespace ProjectTest {
 			// Column2
 			// 
 			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->HeaderText = L"Стоимость (б.р.):";
+			this->Column2->HeaderText = L"Price (b.r.):";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
 			this->Column2->ReadOnly = true;
-			// 
-			// AddService_Button
-			// 
-			this->AddService_Button->Location = System::Drawing::Point(36, 41);
-			this->AddService_Button->Name = L"AddService_Button";
-			this->AddService_Button->Size = System::Drawing::Size(503, 49);
-			this->AddService_Button->TabIndex = 2;
-			this->AddService_Button->Text = L"Добавить";
-			this->AddService_Button->UseVisualStyleBackColor = true;
-			this->AddService_Button->Click += gcnew System::EventHandler(this, &ServicesForm::AddService_Button_Click);
 			// 
 			// ServicesForm
 			// 
@@ -152,7 +155,8 @@ namespace ProjectTest {
 		ShowData();
 	}
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-
+	ServiceInfoForm(e->RowIndex).ShowDialog();
+	ShowData();
 }
 };
 }
