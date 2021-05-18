@@ -48,7 +48,7 @@ void TicketDAO::SaveTickets()
 		file << ticket.Id << ";"
 			<< ticket.PatientCardId << ";"
 			<< ticket.ServiceId << ";"
-			<< ticket.DateTime.ToString() << ";"
+			<< ticket.DateTime.DateAndTimeToString() << ";"
 			<< ticket.IsUsed << ";" << endl;
 	}
 	file.close();

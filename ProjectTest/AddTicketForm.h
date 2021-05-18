@@ -120,6 +120,8 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Surname;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ BirthDay;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ PriceLabel;
 	protected:
 
 	private:
@@ -151,6 +153,8 @@ namespace ProjectTest {
 			this->Save = (gcnew System::Windows::Forms::Button());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->comboBoxServices = (gcnew System::Windows::Forms::ComboBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->PriceLabel = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewPatients))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -209,7 +213,7 @@ namespace ProjectTest {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(12, 186);
+			this->label4->Location = System::Drawing::Point(12, 238);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(63, 17);
 			this->label4->TabIndex = 6;
@@ -229,7 +233,7 @@ namespace ProjectTest {
 				this->Id,
 					this->NameColumn, this->Surname, this->BirthDay, this->Phone
 			});
-			this->dataGridViewPatients->Location = System::Drawing::Point(15, 215);
+			this->dataGridViewPatients->Location = System::Drawing::Point(15, 258);
 			this->dataGridViewPatients->Name = L"dataGridViewPatients";
 			this->dataGridViewPatients->RowHeadersWidth = 51;
 			this->dataGridViewPatients->RowTemplate->Height = 24;
@@ -273,7 +277,7 @@ namespace ProjectTest {
 			// 
 			// Save
 			// 
-			this->Save->Location = System::Drawing::Point(171, 438);
+			this->Save->Location = System::Drawing::Point(171, 498);
 			this->Save->Name = L"Save";
 			this->Save->Size = System::Drawing::Size(146, 46);
 			this->Save->TabIndex = 8;
@@ -298,12 +302,33 @@ namespace ProjectTest {
 			this->comboBoxServices->Name = L"comboBoxServices";
 			this->comboBoxServices->Size = System::Drawing::Size(214, 24);
 			this->comboBoxServices->TabIndex = 10;
+			this->comboBoxServices->SelectedIndexChanged += gcnew System::EventHandler(this, &AddTicketForm::comboBoxServices_SelectedIndexChanged);
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(107, 187);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(44, 17);
+			this->label6->TabIndex = 11;
+			this->label6->Text = L"Price:";
+			// 
+			// PriceLabel
+			// 
+			this->PriceLabel->AutoSize = true;
+			this->PriceLabel->Location = System::Drawing::Point(171, 187);
+			this->PriceLabel->Name = L"PriceLabel";
+			this->PriceLabel->Size = System::Drawing::Size(16, 17);
+			this->PriceLabel->TabIndex = 12;
+			this->PriceLabel->Text = L"0";
 			// 
 			// AddTicketForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(505, 519);
+			this->ClientSize = System::Drawing::Size(505, 565);
+			this->Controls->Add(this->PriceLabel);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->comboBoxServices);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->Save);
@@ -326,7 +351,7 @@ namespace ProjectTest {
 #pragma endregion
 	private: System::Void Save_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		if (HoursCb->Text == "" || MinutesCb->Text == "" || comboBoxServices->Text == "" || dataGridViewPatients->SelectedCells->Count == 0)
+		if (HoursCb->Text == "" || MinutesCb->Text == "" || comboBoxServices->Text == "" || dataGridViewPatients->SelectedRows->Count == 0)
 		{
 			ExceptionBoxForm("Fill all fields!").ShowDialog();
 		}
@@ -375,5 +400,16 @@ namespace ProjectTest {
 			this->Hide();
 		}
 	}
+private: System::Void comboBoxServices_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	string serviceString = msclr::interop::marshal_as<std::string>(comboBoxServices->Text);
+	for (int i = 0; i < DataRepository::serviceDAO.Services.size(); i++) {
+		if (serviceString == DataRepository::serviceDAO.Services[i].Title) {
+
+			PriceLabel->Text = gcnew String(to_string(DataRepository::serviceDAO.Services[i].Price).c_str());
+			break;
+		}
+	}
+}
 };
 }

@@ -357,6 +357,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 }
 private: System::Void DeleteButton_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	DataRepository::patientCardDAO.PatientCards.erase(DataRepository::patientCardDAO.PatientCards.begin() + ID);
 	DataRepository::patientCardDAO.SavePatientCards();
 	this->Hide();
