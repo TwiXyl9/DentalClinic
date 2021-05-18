@@ -3,6 +3,9 @@
 #include "ServicesForm.h"
 #include "PatientCardDAO.h"
 #include "DataRepository.h"
+#include "AddTicketForm.h"
+#include "PatientÑard.h"
+#include "Service.h"
 
 namespace ProjectTest {
 
@@ -27,9 +30,46 @@ namespace ProjectTest {
 			DataRepository::patientCardDAO.LoadPatientCards();
 			DataRepository::serviceDAO.LoadServices();
 			DataRepository::ticketDAO.LoadTickets();
+			ShowData();
 			//
 			//TODO: äîáàâüòå êîä êîíñòðóêòîðà
 			//
+		}
+
+
+	public:
+		void ShowData() {
+			PatientGridView->Rows->Clear();
+			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+			{
+				PatientCard patientCard;
+				for (int j = 0; j < DataRepository::patientCardDAO.PatientCards.size(); j++)
+				{
+					if (DataRepository::patientCardDAO.PatientCards[j].Id == DataRepository::ticketDAO.Tickets[i].PatientCardId)
+					{
+						patientCard = DataRepository::patientCardDAO.PatientCards[j];
+						break;
+					}
+				}
+				
+				
+				Service service;
+				for (int j = 0; j < DataRepository::serviceDAO.Services.size(); j++)
+				{
+					if (DataRepository::serviceDAO.Services[j].Id == DataRepository::ticketDAO.Tickets[i].ServiceId)
+					{
+						service = DataRepository::serviceDAO.Services[j];
+						break;
+					}
+				}
+
+
+				String^ Name = gcnew String(patientCard.Name.c_str());
+				String^ Surname = gcnew String(patientCard.Surname.c_str());
+				String^ Status = gcnew String(to_string(DataRepository::ticketDAO.Tickets[i].IsUsed).c_str());
+				String^ serv = gcnew String(service.Title.c_str());
+				PatientGridView->Rows->Add(Name, Surname, serv, Status);
+			}
 		}
 
 	protected:
@@ -66,9 +106,19 @@ namespace ProjectTest {
 
 	private: System::Windows::Forms::Button^ PatientBase_Button;
 	private: System::Windows::Forms::Button^ ServicesList_Button;
+
+
+
+	private: System::Windows::Forms::Button^ addTicket;
+	private: System::Windows::Forms::Button^ removeTicket;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ServiceColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+
+
+
+
 
 
 
@@ -101,8 +151,11 @@ namespace ProjectTest {
 			this->PatientSearchBox = (gcnew System::Windows::Forms::TextBox());
 			this->PatientBase_Button = (gcnew System::Windows::Forms::Button());
 			this->ServicesList_Button = (gcnew System::Windows::Forms::Button());
+			this->addTicket = (gcnew System::Windows::Forms::Button());
+			this->removeTicket = (gcnew System::Windows::Forms::Button());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ServiceColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
@@ -130,9 +183,9 @@ namespace ProjectTest {
 			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
 			this->PatientGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->PatientGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->PatientGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+			this->PatientGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Column1,
-					this->Column3, this->Column2
+					this->Column3, this->ServiceColumn, this->Column2
 			});
 			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::Window;
@@ -195,6 +248,25 @@ namespace ProjectTest {
 			this->ServicesList_Button->UseVisualStyleBackColor = true;
 			this->ServicesList_Button->Click += gcnew System::EventHandler(this, &MenuForm::ServicesList_Button_Click);
 			// 
+			// addTicket
+			// 
+			this->addTicket->Location = System::Drawing::Point(34, 680);
+			this->addTicket->Name = L"addTicket";
+			this->addTicket->Size = System::Drawing::Size(179, 53);
+			this->addTicket->TabIndex = 12;
+			this->addTicket->Text = L"Add Ticket";
+			this->addTicket->UseVisualStyleBackColor = true;
+			this->addTicket->Click += gcnew System::EventHandler(this, &MenuForm::addTicket_Click);
+			// 
+			// removeTicket
+			// 
+			this->removeTicket->Location = System::Drawing::Point(232, 680);
+			this->removeTicket->Name = L"removeTicket";
+			this->removeTicket->Size = System::Drawing::Size(179, 53);
+			this->removeTicket->TabIndex = 13;
+			this->removeTicket->Text = L"Remove Ticket";
+			this->removeTicket->UseVisualStyleBackColor = true;
+			// 
 			// Column1
 			// 
 			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
@@ -211,6 +283,14 @@ namespace ProjectTest {
 			this->Column3->Name = L"Column3";
 			this->Column3->ReadOnly = true;
 			// 
+			// ServiceColumn
+			// 
+			this->ServiceColumn->HeaderText = L"Service";
+			this->ServiceColumn->MinimumWidth = 6;
+			this->ServiceColumn->Name = L"ServiceColumn";
+			this->ServiceColumn->ReadOnly = true;
+			this->ServiceColumn->Width = 125;
+			// 
 			// Column2
 			// 
 			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
@@ -223,7 +303,9 @@ namespace ProjectTest {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(446, 686);
+			this->ClientSize = System::Drawing::Size(446, 770);
+			this->Controls->Add(this->removeTicket);
+			this->Controls->Add(this->addTicket);
 			this->Controls->Add(this->ServicesList_Button);
 			this->Controls->Add(this->PatientBase_Button);
 			this->Controls->Add(this->PatientSearchBox);
@@ -255,5 +337,8 @@ namespace ProjectTest {
 		servicesForm.ShowDialog();
 		this->Show();
 	}
+private: System::Void addTicket_Click(System::Object^ sender, System::EventArgs^ e) {
+	AddTicketForm().ShowDialog();
+}
 };
 }

@@ -54,4 +54,15 @@ void TicketDAO::SaveTickets()
 	file.close();
 }
 
+int TicketDAO::GetNewId()
+{
+	int new_id = 0;
+	for each (Ticket service in Tickets)
+	{
+		new_id = service.Id;
+	}
+	new_id++;
+	return new_id;
+}
+
 

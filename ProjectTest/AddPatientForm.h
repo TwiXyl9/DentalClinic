@@ -24,10 +24,16 @@ namespace ProjectTest {
 		AddPatientForm()
 		{
 			InitializeComponent();
-			
+			SetMaxDate();
 			
 		}
 
+
+	public:
+		void SetMaxDate() {
+
+			Birth_dateTimePicker->MaxDate= DateTime().Now;
+		}
 
 	protected:
 		/// <summary>

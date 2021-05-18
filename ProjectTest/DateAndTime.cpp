@@ -66,7 +66,13 @@ DateAndTime DateAndTime::ToDateAndTime(System::DateTime dateTime) {
 	date.Seconds = dateTime.Second;
 	return date;
 }
+string DateAndTime::DateAndTimeToString()
+{
+	return  to_string(Days) + "." + to_string(Months) + "." + to_string(Years) + " " + to_string(Hours) + "." + to_string(Minutes) + "." + to_string(Seconds);
+}
 string DateAndTime::ToString()
 {
 	return  to_string(Days)+"."+to_string(Months)+"."+to_string(Years);
 }
+
+

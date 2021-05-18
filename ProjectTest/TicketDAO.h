@@ -15,5 +15,6 @@ public:
 
 	void LoadTickets();
 	void SaveTickets();
+	int GetNewId();
 
 };

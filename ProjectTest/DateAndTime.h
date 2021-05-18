@@ -10,6 +10,7 @@ public:
 	static vector<string> GetDateAndTimeFields(string dateTime);
 	static DateAndTime ToDateAndTime(System::DateTime dateTime);
 
+	string DateAndTimeToString();
 	string ToString();
 	int Seconds;
 	int Minutes;

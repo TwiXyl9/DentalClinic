@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="AddPatientForm.cpp" />
     <ClCompile Include="AddServiceForm.cpp" />
+    <ClCompile Include="AddTicketForm.cpp" />
     <ClCompile Include="DataRepository.cpp" />
     <ClCompile Include="DateAndTime.cpp" />
     <ClCompile Include="ExceptionBoxForm.cpp" />
@@ -140,6 +141,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddServiceForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddTicketForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DataRepository.h" />
@@ -175,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddServiceForm.resx">
       <DependentUpon>AddServiceForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTicketForm.resx">
+      <DependentUpon>AddTicketForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExceptionBoxForm.resx">
       <DependentUpon>ExceptionBoxForm.h</DependentUpon>
