@@ -1,2 +1,3 @@
 5;DImka;Ebat tebia v rot;+375292347001;durak@mail.ru;5.5.2021;18.5.2021;
 6;Maksim;vich;+37566666666;666@mail.ru;9.8.2006;18.5.2021;
+7;Sanya;Boy;+375291234567;sanchas@mail.ru;7.10.2001;19.5.2021;

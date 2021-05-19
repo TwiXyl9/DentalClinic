@@ -1,5 +1,6 @@
 #include "TicketDAO.h"
-
+#include "Ticket.h"
+#include "DataRepository.h"
 TicketDAO::TicketDAO()
 {
 }
@@ -25,15 +26,7 @@ void TicketDAO::LoadTickets()
 		ticket.DateTime.Hours = stoi(dateOfBirthFields[3]);
 		ticket.DateTime.Minutes = stoi(dateOfBirthFields[4]);
 		ticket.DateTime.Seconds = stoi(dateOfBirthFields[5]);
-
-
-		if (ticketFields[4] == "0" || ticketFields[4] == "false" || ticketFields[4] == "False" || ticketFields[4] == "FALSE")
-		{
-			ticket.IsUsed = false;
-		}
-		else{
-			ticket.IsUsed = true;
-		}
+		ticket.Status = Ticket::StringToStatus(ticketFields[4]);
 
 		Tickets.push_back(ticket);
 	}
@@ -49,7 +42,7 @@ void TicketDAO::SaveTickets()
 			<< ticket.PatientCardId << ";"
 			<< ticket.ServiceId << ";"
 			<< ticket.DateTime.DateAndTimeToString() << ";"
-			<< ticket.IsUsed << ";" << endl;
+			<< ticket.StatusToString() << ";" << endl;
 	}
 	file.close();
 }

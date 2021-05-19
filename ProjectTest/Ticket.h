@@ -8,10 +8,17 @@ public:
 	Ticket();
 
 	static vector<string> GetFields(string ticket);
-
 	int Id;
 	int PatientCardId;
 	int ServiceId;
 	DateAndTime DateTime;
-	bool IsUsed;
+	enum Stat {
+		Processing,
+		Wait,
+		Overdue
+	};
+
+	Stat Status;
+	string StatusToString();
+	static Ticket::Stat StringToStatus(string str);
 };

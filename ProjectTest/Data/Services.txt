@@ -1,1 +1,2 @@
 2;kursovaya;100;
+3;Whiting;99;

@@ -393,7 +393,7 @@ private: System::Windows::Forms::Label^ PriceLabel;
 			ticket.PatientCardId = patientId;
 			ticket.ServiceId = serviceId;
 			ticket.DateTime = ticketDate;
-			ticket.IsUsed = false;
+			ticket.Status = Ticket::Stat::Wait;
 			
 			DataRepository::ticketDAO.Tickets.push_back(ticket);
 			DataRepository::ticketDAO.SaveTickets();

@@ -23,3 +23,27 @@ vector<string> Ticket::GetFields(string ticket)
 	}
 	return fields;
 }
+string Ticket::StatusToString() 
+{
+	switch (this->Status) 
+	{
+	case Wait: return "Wait";
+	case Processing: return "Proccesing";
+	case Overdue: return "Overdue";
+	default: return "0";
+
+	}
+}
+
+
+Ticket::Stat Ticket::StringToStatus(string str) {
+	if (str == "Wait")
+	{
+		return Ticket::Stat::Wait;
+	}
+	else if (str == "Processing")
+	{
+		return Ticket::Stat::Processing;
+	}
+	return Ticket::Stat::Overdue;
+}

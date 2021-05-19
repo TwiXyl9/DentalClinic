@@ -71,7 +71,7 @@ namespace ProjectTest {
 					String^ id = gcnew String(to_string(DataRepository::ticketDAO.Tickets[i].Id).c_str());
 					String^ Name = gcnew String(patientCard.Name.c_str());
 					String^ Surname = gcnew String(patientCard.Surname.c_str());
-					String^ Status = gcnew String(to_string(DataRepository::ticketDAO.Tickets[i].IsUsed).c_str());
+					String^ Status = gcnew String(DataRepository::ticketDAO.Tickets[i].StatusToString().c_str());
 					String^ time = gcnew String(DataRepository::ticketDAO.Tickets[i].DateTime.TimeToString().c_str());
 					String^ serv = gcnew String(service.Title.c_str());
 					PatientGridView->Rows->Add(id, Name, Surname, serv, time ,Status);
@@ -373,7 +373,14 @@ private: System::Void dateTimePicker_ValueChanged(System::Object^ sender, System
 	ShowData();
 }
 private: System::Void removeTicket_Click(System::Object^ sender, System::EventArgs^ e) {
-	int ticketId = stoi(msclr::interop::marshal_as<std::string>(PatientGridView->SelectedRows[0]->Cells[0]->Value->ToString()));
+	int ticketId = 0;
+	try {
+		ticketId = stoi(msclr::interop::marshal_as<std::string>(PatientGridView->SelectedRows[0]->Cells[0]->Value->ToString()));
+	}
+	catch (exception ex) {
+		ExceptionBoxForm("Choose Ticket!").ShowDialog();
+		return;
+	}
 	int idForDel = 0;
 	for (size_t i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 	{
