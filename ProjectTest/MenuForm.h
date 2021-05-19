@@ -30,6 +30,7 @@ namespace ProjectTest {
 			DataRepository::patientCardDAO.LoadPatientCards();
 			DataRepository::serviceDAO.LoadServices();
 			DataRepository::ticketDAO.LoadTickets();
+			RefreshStatus();
 			ShowData();
 			//
 			//TODO: добавьте код конструктора
@@ -78,7 +79,29 @@ namespace ProjectTest {
 				}
 			}
 		}
-
+	public: void RefreshStatus() {
+		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+		{
+			if (DataRepository::ticketDAO.Tickets[i].DateTime.Years == DateTime::Now.Year && DataRepository::ticketDAO.Tickets[i].DateTime.Months == DateTime::Now.Month && DataRepository::ticketDAO.Tickets[i].DateTime.Days == DateTime::Now.Day)
+			{
+				if (dateTimePicker->Value.Date == DateTime::Now.Date)
+				{
+					if (DateTime::Now.Hour >= DataRepository::ticketDAO.Tickets[i].DateTime.Hours || (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute > DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29))
+					{
+						//просрочено
+						DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Overdue;
+					}
+					else if (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute <= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29 && DateTime::Now.Minute >= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes)
+					{
+						//в процессе
+						DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Processing;
+					}
+				}
+			}
+		}
+		DataRepository::ticketDAO.SaveTickets();
+		ShowData();
+	}
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -124,6 +147,8 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ServiceColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TimeColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+private: System::Windows::Forms::Button^ Refresh_Button;
+private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -177,16 +202,18 @@ namespace ProjectTest {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuForm::typeid));
 			this->dateTimePicker = (gcnew System::Windows::Forms::DateTimePicker());
 			this->PatientGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->PatientBase_Button = (gcnew System::Windows::Forms::Button());
-			this->ServicesList_Button = (gcnew System::Windows::Forms::Button());
-			this->addTicket = (gcnew System::Windows::Forms::Button());
-			this->removeTicket = (gcnew System::Windows::Forms::Button());
 			this->IdColum = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->ServiceColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->TimeColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PatientBase_Button = (gcnew System::Windows::Forms::Button());
+			this->ServicesList_Button = (gcnew System::Windows::Forms::Button());
+			this->addTicket = (gcnew System::Windows::Forms::Button());
+			this->removeTicket = (gcnew System::Windows::Forms::Button());
+			this->Refresh_Button = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -243,46 +270,6 @@ namespace ProjectTest {
 			this->PatientGridView->Size = System::Drawing::Size(492, 424);
 			this->PatientGridView->TabIndex = 7;
 			// 
-			// PatientBase_Button
-			// 
-			this->PatientBase_Button->Location = System::Drawing::Point(34, 33);
-			this->PatientBase_Button->Name = L"PatientBase_Button";
-			this->PatientBase_Button->Size = System::Drawing::Size(492, 53);
-			this->PatientBase_Button->TabIndex = 10;
-			this->PatientBase_Button->Text = L"Patients Base";
-			this->PatientBase_Button->UseVisualStyleBackColor = true;
-			this->PatientBase_Button->Click += gcnew System::EventHandler(this, &MenuForm::PatientBase_Button_Click_1);
-			// 
-			// ServicesList_Button
-			// 
-			this->ServicesList_Button->Location = System::Drawing::Point(34, 107);
-			this->ServicesList_Button->Name = L"ServicesList_Button";
-			this->ServicesList_Button->Size = System::Drawing::Size(492, 55);
-			this->ServicesList_Button->TabIndex = 11;
-			this->ServicesList_Button->Text = L"List of Services";
-			this->ServicesList_Button->UseVisualStyleBackColor = true;
-			this->ServicesList_Button->Click += gcnew System::EventHandler(this, &MenuForm::ServicesList_Button_Click);
-			// 
-			// addTicket
-			// 
-			this->addTicket->Location = System::Drawing::Point(34, 680);
-			this->addTicket->Name = L"addTicket";
-			this->addTicket->Size = System::Drawing::Size(179, 53);
-			this->addTicket->TabIndex = 12;
-			this->addTicket->Text = L"Add Ticket";
-			this->addTicket->UseVisualStyleBackColor = true;
-			this->addTicket->Click += gcnew System::EventHandler(this, &MenuForm::addTicket_Click);
-			// 
-			// removeTicket
-			// 
-			this->removeTicket->Location = System::Drawing::Point(347, 680);
-			this->removeTicket->Name = L"removeTicket";
-			this->removeTicket->Size = System::Drawing::Size(179, 53);
-			this->removeTicket->TabIndex = 13;
-			this->removeTicket->Text = L"Remove Ticket";
-			this->removeTicket->UseVisualStyleBackColor = true;
-			this->removeTicket->Click += gcnew System::EventHandler(this, &MenuForm::removeTicket_Click);
-			// 
 			// IdColum
 			// 
 			this->IdColum->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
@@ -330,11 +317,73 @@ namespace ProjectTest {
 			this->Column2->Name = L"Column2";
 			this->Column2->ReadOnly = true;
 			// 
+			// PatientBase_Button
+			// 
+			this->PatientBase_Button->Location = System::Drawing::Point(34, 33);
+			this->PatientBase_Button->Name = L"PatientBase_Button";
+			this->PatientBase_Button->Size = System::Drawing::Size(492, 53);
+			this->PatientBase_Button->TabIndex = 10;
+			this->PatientBase_Button->Text = L"Patients Base";
+			this->PatientBase_Button->UseVisualStyleBackColor = true;
+			this->PatientBase_Button->Click += gcnew System::EventHandler(this, &MenuForm::PatientBase_Button_Click_1);
+			// 
+			// ServicesList_Button
+			// 
+			this->ServicesList_Button->Location = System::Drawing::Point(34, 107);
+			this->ServicesList_Button->Name = L"ServicesList_Button";
+			this->ServicesList_Button->Size = System::Drawing::Size(492, 55);
+			this->ServicesList_Button->TabIndex = 11;
+			this->ServicesList_Button->Text = L"List of Services";
+			this->ServicesList_Button->UseVisualStyleBackColor = true;
+			this->ServicesList_Button->Click += gcnew System::EventHandler(this, &MenuForm::ServicesList_Button_Click);
+			// 
+			// addTicket
+			// 
+			this->addTicket->Location = System::Drawing::Point(34, 680);
+			this->addTicket->Name = L"addTicket";
+			this->addTicket->Size = System::Drawing::Size(179, 53);
+			this->addTicket->TabIndex = 12;
+			this->addTicket->Text = L"Add Ticket";
+			this->addTicket->UseVisualStyleBackColor = true;
+			this->addTicket->Click += gcnew System::EventHandler(this, &MenuForm::addTicket_Click);
+			// 
+			// removeTicket
+			// 
+			this->removeTicket->Location = System::Drawing::Point(347, 680);
+			this->removeTicket->Name = L"removeTicket";
+			this->removeTicket->Size = System::Drawing::Size(179, 53);
+			this->removeTicket->TabIndex = 13;
+			this->removeTicket->Text = L"Remove Ticket";
+			this->removeTicket->UseVisualStyleBackColor = true;
+			this->removeTicket->Click += gcnew System::EventHandler(this, &MenuForm::removeTicket_Click);
+			// 
+			// Refresh_Button
+			// 
+			this->Refresh_Button->BackColor = System::Drawing::Color::White;
+			this->Refresh_Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Refresh_Button.Image")));
+			this->Refresh_Button->Location = System::Drawing::Point(495, 221);
+			this->Refresh_Button->Name = L"Refresh_Button";
+			this->Refresh_Button->Size = System::Drawing::Size(31, 23);
+			this->Refresh_Button->TabIndex = 14;
+			this->Refresh_Button->UseVisualStyleBackColor = false;
+			this->Refresh_Button->Click += gcnew System::EventHandler(this, &MenuForm::Refresh_Button_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(292, 185);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(182, 37);
+			this->button1->TabIndex = 15;
+			this->button1->Text = L"2222";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// MenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(561, 770);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->Refresh_Button);
 			this->Controls->Add(this->removeTicket);
 			this->Controls->Add(this->addTicket);
 			this->Controls->Add(this->ServicesList_Button);
@@ -394,6 +443,10 @@ private: System::Void removeTicket_Click(System::Object^ sender, System::EventAr
 	DataRepository::ticketDAO.SaveTickets();
 	ShowData();
 
+}
+
+private: System::Void Refresh_Button_Click(System::Object^ sender, System::EventArgs^ e) {
+	RefreshStatus();
 }
 };
 }

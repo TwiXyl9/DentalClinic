@@ -355,6 +355,13 @@ private: System::Windows::Forms::Label^ PriceLabel;
 		{
 			ExceptionBoxForm("Fill all fields!").ShowDialog();
 		}
+		else if (dateTimePicker->Value.Date == DateTime::Now.Date && 
+			(DateTime::Now.Hour > stoi(msclr::interop::marshal_as<std::string>(HoursCb->Text)) || 
+				(DateTime::Now.Hour == stoi(msclr::interop::marshal_as<std::string>(HoursCb->Text)) && 
+					DateTime::Now.Minute > stoi(msclr::interop::marshal_as<std::string>(MinutesCb->Text)))))
+		{
+			ExceptionBoxForm("Input correct time!").ShowDialog();
+		}
 		else {
 			DateTime selectedDate = dateTimePicker->Value;
 			DateAndTime ticketDate = DateAndTime::ToDateAndTime(selectedDate);
@@ -407,6 +414,7 @@ private: System::Void comboBoxServices_SelectedIndexChanged(System::Object^ send
 		if (serviceString == DataRepository::serviceDAO.Services[i].Title) {
 
 			PriceLabel->Text = gcnew String(to_string(DataRepository::serviceDAO.Services[i].Price).c_str());
+			PriceLabel->Text += " b.r.";
 			break;
 		}
 	}

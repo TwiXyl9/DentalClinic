@@ -84,14 +84,15 @@ namespace ProjectTest {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ServicesForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->AddService_Button = (gcnew System::Windows::Forms::Button());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AddService_Button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
 				this->Column1,
@@ -106,16 +107,6 @@ namespace ProjectTest {
 			this->dataGridView1->Size = System::Drawing::Size(503, 282);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ServicesForm::dataGridView1_CellContentClick);
-			// 
-			// AddService_Button
-			// 
-			this->AddService_Button->Location = System::Drawing::Point(36, 41);
-			this->AddService_Button->Name = L"AddService_Button";
-			this->AddService_Button->Size = System::Drawing::Size(503, 49);
-			this->AddService_Button->TabIndex = 2;
-			this->AddService_Button->Text = L"Add";
-			this->AddService_Button->UseVisualStyleBackColor = true;
-			this->AddService_Button->Click += gcnew System::EventHandler(this, &ServicesForm::AddService_Button_Click);
 			// 
 			// Column1
 			// 
@@ -132,6 +123,16 @@ namespace ProjectTest {
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
 			this->Column2->ReadOnly = true;
+			// 
+			// AddService_Button
+			// 
+			this->AddService_Button->Location = System::Drawing::Point(36, 41);
+			this->AddService_Button->Name = L"AddService_Button";
+			this->AddService_Button->Size = System::Drawing::Size(503, 49);
+			this->AddService_Button->TabIndex = 2;
+			this->AddService_Button->Text = L"Add";
+			this->AddService_Button->UseVisualStyleBackColor = true;
+			this->AddService_Button->Click += gcnew System::EventHandler(this, &ServicesForm::AddService_Button_Click);
 			// 
 			// ServicesForm
 			// 

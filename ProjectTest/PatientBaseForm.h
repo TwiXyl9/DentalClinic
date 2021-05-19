@@ -64,7 +64,10 @@ namespace ProjectTest {
 	private: System::Windows::Forms::Button^ AddPatient_Button;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SurnameColumn;
+
+
+
 	protected:
 
 
@@ -93,19 +96,20 @@ namespace ProjectTest {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PatientBaseForm::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->AddPatient_Button = (gcnew System::Windows::Forms::Button());
 			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->SurnameColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AddPatient_Button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->ID, this->Column1,
-					this->Column2
+					this->SurnameColumn
 			});
 			this->dataGridView1->Location = System::Drawing::Point(44, 165);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -115,16 +119,6 @@ namespace ProjectTest {
 			this->dataGridView1->Size = System::Drawing::Size(405, 334);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &PatientBaseForm::dataGridView1_CellContentClick);
-			// 
-			// AddPatient_Button
-			// 
-			this->AddPatient_Button->Location = System::Drawing::Point(44, 82);
-			this->AddPatient_Button->Name = L"AddPatient_Button";
-			this->AddPatient_Button->Size = System::Drawing::Size(405, 43);
-			this->AddPatient_Button->TabIndex = 1;
-			this->AddPatient_Button->Text = L"Add";
-			this->AddPatient_Button->UseVisualStyleBackColor = true;
-			this->AddPatient_Button->Click += gcnew System::EventHandler(this, &PatientBaseForm::AddPatient_Button_Click);
 			// 
 			// ID
 			// 
@@ -141,13 +135,23 @@ namespace ProjectTest {
 			this->Column1->Name = L"Column1";
 			this->Column1->ReadOnly = true;
 			// 
-			// Column2
+			// SurnameColumn
 			// 
-			this->Column2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Column2->HeaderText = L"Surname:";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->ReadOnly = true;
+			this->SurnameColumn->HeaderText = L"Surname:";
+			this->SurnameColumn->MinimumWidth = 6;
+			this->SurnameColumn->Name = L"SurnameColumn";
+			this->SurnameColumn->ReadOnly = true;
+			this->SurnameColumn->Width = 125;
+			// 
+			// AddPatient_Button
+			// 
+			this->AddPatient_Button->Location = System::Drawing::Point(44, 82);
+			this->AddPatient_Button->Name = L"AddPatient_Button";
+			this->AddPatient_Button->Size = System::Drawing::Size(405, 43);
+			this->AddPatient_Button->TabIndex = 1;
+			this->AddPatient_Button->Text = L"Add";
+			this->AddPatient_Button->UseVisualStyleBackColor = true;
+			this->AddPatient_Button->Click += gcnew System::EventHandler(this, &PatientBaseForm::AddPatient_Button_Click);
 			// 
 			// PatientBaseForm
 			// 
