@@ -45,8 +45,8 @@ namespace ProjectTest {
 
 			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 			{
-				if (DataRepository::ticketDAO.Tickets[i].PatientCardId == ID) {
-					TicketsListBox->Items->Add(gcnew String(DataRepository::ticketDAO.Tickets[i].DateTime.ToString().c_str()));
+				if (DataRepository::ticketDAO.Tickets[i].PatientCardId == DataRepository::patientCardDAO.PatientCards[ID].Id) {
+					TicketsListBox->Items->Add(gcnew String(DataRepository::ticketDAO.Tickets[i].DateTime.DateAndTimeToString().c_str()));
 				}
 			}
 		}
@@ -358,6 +358,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void DeleteButton_Click(System::Object^ sender, System::EventArgs^ e) {
 
+	for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+	{
+		if (DataRepository::ticketDAO.Tickets[i].PatientCardId == DataRepository::patientCardDAO.PatientCards[ID].Id) {
+			DataRepository::ticketDAO.Tickets.erase(DataRepository::ticketDAO.Tickets.begin() + i);
+		}
+	}
+	DataRepository::ticketDAO.SaveTickets();
 	DataRepository::patientCardDAO.PatientCards.erase(DataRepository::patientCardDAO.PatientCards.begin() + ID);
 	DataRepository::patientCardDAO.SavePatientCards();
 	this->Hide();
