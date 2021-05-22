@@ -135,6 +135,7 @@
     <ClCompile Include="ServicesForm.cpp" />
     <ClCompile Include="Ticket.cpp" />
     <ClCompile Include="TicketDAO.cpp" />
+    <ClCompile Include="TicketInfoForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddPatientForm.h">
@@ -172,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="TicketDAO.h" />
+    <ClInclude Include="TicketInfoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPatientForm.resx">
@@ -200,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ServicesForm.resx">
       <DependentUpon>ServicesForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketInfoForm.resx">
+      <DependentUpon>TicketInfoForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

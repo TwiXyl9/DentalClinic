@@ -13,8 +13,9 @@ public:
 	int ServiceId;
 	DateAndTime DateTime;
 	enum Stat {
-		Processing,
 		Wait,
+		Processing,
+		Done,
 		Overdue
 	};
 

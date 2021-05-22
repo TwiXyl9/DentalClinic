@@ -324,19 +324,19 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	DateTime date;
 	DateTime registrationDate = date.Now;
 	if (f_name->Length < 2) {
-		ExceptionBoxForm exceptionBox("Имя введено некорректно!");
+		ExceptionBoxForm exceptionBox("Name entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (l_name->Length < 3) {
-		ExceptionBoxForm exceptionBox("Фамилия введена некорректно!");
+		ExceptionBoxForm exceptionBox("Surname entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (phoneNumber->Length < 7) {
-		ExceptionBoxForm exceptionBox("Номер телефона введён некорректно!");
+		ExceptionBoxForm exceptionBox("Phone number entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (email->Length < 9 && !email->Contains("@")) {
-		ExceptionBoxForm exceptionBox("Email введён некорректно!");
+		ExceptionBoxForm exceptionBox("Email entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else {
@@ -357,13 +357,15 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 }
 private: System::Void DeleteButton_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	vector<Ticket> new_tickets;
 	for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 	{
 		if (DataRepository::ticketDAO.Tickets[i].PatientCardId == DataRepository::patientCardDAO.PatientCards[ID].Id) {
-			DataRepository::ticketDAO.Tickets.erase(DataRepository::ticketDAO.Tickets.begin() + i);
+			continue;
 		}
+		new_tickets.push_back(DataRepository::ticketDAO.Tickets[i]);
 	}
+	DataRepository::ticketDAO.Tickets = new_tickets;
 	DataRepository::ticketDAO.SaveTickets();
 	DataRepository::patientCardDAO.PatientCards.erase(DataRepository::patientCardDAO.PatientCards.begin() + ID);
 	DataRepository::patientCardDAO.SavePatientCards();

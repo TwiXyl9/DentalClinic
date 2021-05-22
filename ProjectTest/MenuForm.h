@@ -6,6 +6,7 @@
 #include "AddTicketForm.h"
 #include "PatientÑard.h"
 #include "Service.h"
+#include "TicketInfoForm.h"
 
 namespace ProjectTest {
 
@@ -148,7 +149,7 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TimeColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 private: System::Windows::Forms::Button^ Refresh_Button;
-private: System::Windows::Forms::Button^ button1;
+
 
 
 
@@ -213,7 +214,6 @@ private: System::Windows::Forms::Button^ button1;
 			this->addTicket = (gcnew System::Windows::Forms::Button());
 			this->removeTicket = (gcnew System::Windows::Forms::Button());
 			this->Refresh_Button = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -269,6 +269,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->PatientGridView->RowTemplate->Height = 24;
 			this->PatientGridView->Size = System::Drawing::Size(492, 424);
 			this->PatientGridView->TabIndex = 7;
+			this->PatientGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MenuForm::PatientGridView_CellContentClick);
 			// 
 			// IdColum
 			// 
@@ -368,21 +369,11 @@ private: System::Windows::Forms::Button^ button1;
 			this->Refresh_Button->UseVisualStyleBackColor = false;
 			this->Refresh_Button->Click += gcnew System::EventHandler(this, &MenuForm::Refresh_Button_Click);
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(292, 185);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(182, 37);
-			this->button1->TabIndex = 15;
-			this->button1->Text = L"2222";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
 			// MenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(561, 770);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->Refresh_Button);
 			this->Controls->Add(this->removeTicket);
 			this->Controls->Add(this->addTicket);
@@ -447,6 +438,12 @@ private: System::Void removeTicket_Click(System::Object^ sender, System::EventAr
 
 private: System::Void Refresh_Button_Click(System::Object^ sender, System::EventArgs^ e) {
 	RefreshStatus();
+}
+private: System::Void PatientGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int ticket_id = Convert::ToInt32(PatientGridView->Rows[e->RowIndex]->Cells[0]->Value);
+	TicketInfoForm ticketInfoForm(ticket_id);
+	ticketInfoForm.ShowDialog();
+	ShowData();
 }
 };
 }

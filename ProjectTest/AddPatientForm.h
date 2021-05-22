@@ -222,19 +222,19 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	DateTime date;
 	DateTime registrationDate = date.Now;
 	if (f_name->Length<2) {
-		ExceptionBoxForm exceptionBox("Имя введено некорректно!");
+		ExceptionBoxForm exceptionBox("Name entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (l_name->Length<3) {
-		ExceptionBoxForm exceptionBox("Фамилия введена некорректно!");
+		ExceptionBoxForm exceptionBox("Surname entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (phoneNumber->Length<7) {
-		ExceptionBoxForm exceptionBox("Номер телефона введён некорректно!");
+		ExceptionBoxForm exceptionBox("Phone number entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else if (email->Length<9 && !email->Contains("@")) {
-		ExceptionBoxForm exceptionBox("Email введён некорректно!");
+		ExceptionBoxForm exceptionBox("Email entered incorrectly!");
 		exceptionBox.ShowDialog();
 	}
 	else {

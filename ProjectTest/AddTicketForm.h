@@ -25,7 +25,7 @@ namespace ProjectTest {
 		{
 			InitializeComponent();
 			FillTime();
-			FillPatients();
+			FillPatients(DataRepository::patientCardDAO.PatientCards);
 			SetMinDate();
 			FillServices();
 			//
@@ -63,17 +63,17 @@ namespace ProjectTest {
 		}
 
 	public:
-		void FillPatients() {
+		void FillPatients(vector<PatientCard> patients) {
 
 			dataGridViewPatients->Rows->Clear();
 
-			for (int i = 0; i < DataRepository::patientCardDAO.PatientCards.size(); i++)
+			for (int i = 0; i < patients.size(); i++)
 			{
-				String^ Name = gcnew String(DataRepository::patientCardDAO.PatientCards[i].Name.c_str());
-				String^ Surname = gcnew String(DataRepository::patientCardDAO.PatientCards[i].Surname.c_str());
-				String^ Id = gcnew String(to_string(DataRepository::patientCardDAO.PatientCards[i].Id).c_str());
-				String^ BirthDay = gcnew String((DataRepository::patientCardDAO.PatientCards[i].DateOfBirth.ToString()).c_str());
-				String^ Phone = gcnew String((DataRepository::patientCardDAO.PatientCards[i].Phone).c_str());
+				String^ Name = gcnew String(patients[i].Name.c_str());
+				String^ Surname = gcnew String(patients[i].Surname.c_str());
+				String^ Id = gcnew String(to_string(patients[i].Id).c_str());
+				String^ BirthDay = gcnew String((patients[i].DateOfBirth.ToString()).c_str());
+				String^ Phone = gcnew String((patients[i].Phone).c_str());
 				dataGridViewPatients->Rows->Add(Id, Name, Surname, BirthDay, Phone);
 			}
 		}
@@ -122,6 +122,8 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
 private: System::Windows::Forms::Label^ label6;
 private: System::Windows::Forms::Label^ PriceLabel;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::TextBox^ textBox1;
 	protected:
 
 	private:
@@ -137,6 +139,7 @@ private: System::Windows::Forms::Label^ PriceLabel;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AddTicketForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->HoursCb = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -155,6 +158,8 @@ private: System::Windows::Forms::Label^ PriceLabel;
 			this->comboBoxServices = (gcnew System::Windows::Forms::ComboBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->PriceLabel = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewPatients))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -322,11 +327,30 @@ private: System::Windows::Forms::Label^ PriceLabel;
 			this->PriceLabel->TabIndex = 12;
 			this->PriceLabel->Text = L"0";
 			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(225, 233);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(116, 17);
+			this->label7->TabIndex = 13;
+			this->label7->Text = L"Search surname:";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(342, 230);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(128, 22);
+			this->textBox1->TabIndex = 14;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &AddTicketForm::textBox1_TextChanged);
+			// 
 			// AddTicketForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(505, 565);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->PriceLabel);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->comboBoxServices);
@@ -340,6 +364,7 @@ private: System::Windows::Forms::Label^ PriceLabel;
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->HoursCb);
 			this->Controls->Add(this->label1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"AddTicketForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Dental Clinic";
@@ -418,6 +443,16 @@ private: System::Void comboBoxServices_SelectedIndexChanged(System::Object^ send
 			break;
 		}
 	}
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	vector<PatientCard> search_cards;
+	for (int i = 0; i < DataRepository::patientCardDAO.PatientCards.size(); i++)
+	{
+		if ((gcnew String(DataRepository::patientCardDAO.PatientCards[i].Surname.c_str()))->ToLower()->Contains(textBox1->Text->ToLower())) {
+			search_cards.push_back(DataRepository::patientCardDAO.PatientCards[i]);
+		}
+	}
+	FillPatients(search_cards);
 }
 };
 }
