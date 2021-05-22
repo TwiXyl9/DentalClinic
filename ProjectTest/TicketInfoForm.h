@@ -1,5 +1,5 @@
 #pragma once
-
+#include "DataRepository.h"
 namespace ProjectTest {
 
 	using namespace System;
@@ -20,6 +20,7 @@ namespace ProjectTest {
 		{
 			InitializeComponent();
 			ticket_ID = ticket_id;
+			ShowData();
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -31,16 +32,16 @@ namespace ProjectTest {
 		
 		// 
 		//
-		int patient_id = DataRepository::ticketDAO.Tickets[ticket_ID].PatientCardId;
-		int service_id = DataRepository::ticketDAO.Tickets[ticket_ID].ServiceId;
-		String^ id = gcnew String(to_string(DataRepository::ticketDAO.Tickets[ticket_ID].Id).c_str());
-		String^ Name = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Name.c_str());
-		String^ Surname = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Surname.c_str());
-		String^ Status = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].StatusToString().c_str());
-		String^ time = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.TimeToString().c_str());
-		String^ serv = gcnew String(DataRepository::serviceDAO.Services[service_id].Title.c_str());
-		dataGridViewPatients->Rows->Add(id, Name, Surname, serv, time, Status);
-		//
+		//int patient_id = DataRepository::ticketDAO.Tickets[ticket_ID].PatientCardId;
+		//int service_id = DataRepository::ticketDAO.Tickets[ticket_ID].ServiceId;
+		//String^ id = gcnew String(to_string(DataRepository::ticketDAO.Tickets[ticket_ID].Id).c_str());
+		//String^ Name = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Name.c_str());
+		//String^ Surname = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Surname.c_str());
+		//String^ Status = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].StatusToString().c_str());
+		//String^ time = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.TimeToString().c_str());
+		//String^ serv = gcnew String(DataRepository::serviceDAO.Services[service_id].Title.c_str());
+		//dataGridViewPatients->Rows->Add(id, Name, Surname, serv, time, Status);
+		////
 	}
 
 	protected:
