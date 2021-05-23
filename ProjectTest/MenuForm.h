@@ -89,8 +89,10 @@ namespace ProjectTest {
 				{
 					if (DateTime::Now.Hour >= DataRepository::ticketDAO.Tickets[i].DateTime.Hours || (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute > DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29))
 					{
-						//просрочено
-						DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Overdue;
+						if (DataRepository::ticketDAO.Tickets[i].Status== Ticket::Stat::Wait || DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Processing) {
+							//просрочено
+							DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Done;
+						}
 					}
 					else if (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute <= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29 && DateTime::Now.Minute >= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes)
 					{
@@ -441,6 +443,7 @@ private: System::Void Refresh_Button_Click(System::Object^ sender, System::Event
 }
 private: System::Void PatientGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int ticket_id = Convert::ToInt32(PatientGridView->Rows[e->RowIndex]->Cells[0]->Value);
+	RefreshStatus();
 	TicketInfoForm ticketInfoForm(ticket_id);
 	ticketInfoForm.ShowDialog();
 	ShowData();

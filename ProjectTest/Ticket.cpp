@@ -35,7 +35,18 @@ string Ticket::StatusToString()
 
 	}
 }
+string Ticket::StatusToString(Stat status)
+{
+	switch (status)
+	{
+	case Wait: return "Wait";
+	case Processing: return "Proccesing";
+	case Overdue: return "Overdue";
+	case Done: return "Done";
+	default: return "0";
 
+	}
+}
 
 Ticket::Stat Ticket::StringToStatus(string str) {
 	if (str == "Wait")

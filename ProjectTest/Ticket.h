@@ -21,5 +21,6 @@ public:
 
 	Stat Status;
 	string StatusToString();
+	static string StatusToString(Stat status);
 	static Ticket::Stat StringToStatus(string str);
 };
