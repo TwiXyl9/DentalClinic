@@ -1,5 +1,8 @@
 #pragma once
 #include "DataRepository.h"
+#include "ExceptionBoxForm.h"
+#include "Ticket.h"
+#include <msclr\marshal_cppstd.h>
 namespace ProjectTest {
 
 	using namespace System;
@@ -25,22 +28,107 @@ namespace ProjectTest {
 			//TODO: добавьте код конструктора
 			//
 		}
+	public: void FillTime(Ticket ticket) {
+
+			for (int i = 9; i < 19; i++) {
+				HoursCb->Items->Add(i);
+			}
+			HoursCb->Text = gcnew String(to_string(ticket.DateTime.Hours).c_str());
+			MinutesCb->Items->Add("00");
+			MinutesCb->Items->Add("30");
+			if (ticket.DateTime.Minutes == 0) {
+				string minutes = "00";
+				MinutesCb->Text = gcnew String(minutes.c_str());
+			}
+			else {
+
+				MinutesCb->Text = gcnew String(to_string(ticket.DateTime.Minutes).c_str());
+			}
+		}
+
+
+	public: void FillServices(Service service) {
+
+			for (int i = 0; i < DataRepository::serviceDAO.Services.size(); i++) {
+				string service = DataRepository::serviceDAO.Services[i].Title;
+				comboBoxServices->Items->Add(gcnew String(service.c_str()));
+			}
+			comboBoxServices->Text= gcnew String(service.Title.c_str());
+			PriceLabel->Text = gcnew String(to_string(service.Price).c_str());
+		}
+
+
+	public: void SetMinDate(Ticket ticket) {
+		    dateTimePicker->MinDate = DateTime(ticket.DateTime.Years, ticket.DateTime.Months, ticket.DateTime.Days);
+
+			dateTimePicker->Value = DateTime(ticket.DateTime.Years, ticket.DateTime.Months, ticket.DateTime.Days);
+
+			//dateTimePicker->MinDate = DateTime().Now;
+		}
+
+	public: void FillStatus(Ticket ticket ) {
+		DateTime date = dateTimePicker->Value;
+		string status="";
+		if (date.Date < DateTime::Now || 
+			(date.Date == DateTime::Now && stoi(msclr::interop::marshal_as<std::string>(HoursCb->Text)) < DateTime::Now.Hour) || 
+			(date.Date == DateTime::Now && stoi(msclr::interop::marshal_as<std::string>(HoursCb->Text)) == DateTime::Now.Hour && stoi(msclr::interop::marshal_as<std::string>(MinutesCb->Text)) < DateTime::Now.Minute))
+		{
+			status = "Done";
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+			status = "Overdue";
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+		}
+		else if (date.Date < DateTime::Now)
+		{
+			status = "Done"; // исправить
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+			status = "Overdue";
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+			status = "Processing";
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+			status = "Wait";
+			StatusComboBox->Items->Add(gcnew String(status.c_str()));
+		}
+
+	}
+
 	public: void ShowData() {
-		//
-		dateTimePicker->Value = DateTime(DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.Years, DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.Months, DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.Days);
-		//
 		
-		// 
-		//
-		//int patient_id = DataRepository::ticketDAO.Tickets[ticket_ID].PatientCardId;
-		//int service_id = DataRepository::ticketDAO.Tickets[ticket_ID].ServiceId;
-		//String^ id = gcnew String(to_string(DataRepository::ticketDAO.Tickets[ticket_ID].Id).c_str());
-		//String^ Name = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Name.c_str());
-		//String^ Surname = gcnew String(DataRepository::patientCardDAO.PatientCards[patient_id].Surname.c_str());
-		//String^ Status = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].StatusToString().c_str());
-		//String^ time = gcnew String(DataRepository::ticketDAO.Tickets[ticket_ID].DateTime.TimeToString().c_str());
-		//String^ serv = gcnew String(DataRepository::serviceDAO.Services[service_id].Title.c_str());
-		//dataGridViewPatients->Rows->Add(id, Name, Surname, serv, time, Status);
+		Ticket ticket;
+		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+		{
+			if (DataRepository::ticketDAO.Tickets[i].Id == ticket_ID) {
+				ticket = DataRepository::ticketDAO.Tickets[i];
+				break;
+			}
+		}
+		SetMinDate(ticket);
+		FillTime(ticket);
+		//int patient_id = ticket.PatientCardId;
+		//PatientCard patient;
+		//for (int i = 0; i < DataRepository::patientCardDAO.PatientCards.size(); i++)
+		//{
+		//	if (DataRepository::patientCardDAO.PatientCards[i].Id == patient_id) {
+		//		patient = DataRepository::patientCardDAO.PatientCards[i];
+		//		break;
+		//	}
+		//}
+		int service_id = ticket.ServiceId;
+		Service service;
+		for (int i = 0; i < DataRepository::serviceDAO.Services.size(); i++)
+		{
+			if (DataRepository::serviceDAO.Services[i].Id == service_id) {
+				service = DataRepository::serviceDAO.Services[i];
+				break;
+			}
+		}
+		FillServices(service);
+		//String^ Name = gcnew String(patient.Name.c_str());
+		//String^ Surname = gcnew String(patient.Surname.c_str());
+		//String^ Id = gcnew String(to_string(patient.Id).c_str());
+		//String^ BirthDay = gcnew String((patient.DateOfBirth.ToString()).c_str());
+		//String^ Phone = gcnew String((patient.Phone).c_str());
+		//dataGridViewPatients->Rows->Add(Id, Name, Surname, BirthDay, Phone);
 		////
 	}
 
@@ -75,7 +163,8 @@ namespace ProjectTest {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ Save;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+private: System::Windows::Forms::ComboBox^ StatusComboBox;
+
 
 	private:
 		/// <summary>
@@ -110,7 +199,7 @@ namespace ProjectTest {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Save = (gcnew System::Windows::Forms::Button());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->StatusComboBox = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewPatients))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -140,6 +229,7 @@ namespace ProjectTest {
 			this->comboBoxServices->Name = L"comboBoxServices";
 			this->comboBoxServices->Size = System::Drawing::Size(214, 24);
 			this->comboBoxServices->TabIndex = 24;
+			this->comboBoxServices->SelectedIndexChanged += gcnew System::EventHandler(this, &TicketInfoForm::comboBoxServices_SelectedIndexChanged);
 			// 
 			// label5
 			// 
@@ -285,21 +375,21 @@ namespace ProjectTest {
 			this->label7->TabIndex = 28;
 			this->label7->Text = L"Status:";
 			// 
-			// comboBox1
+			// StatusComboBox
 			// 
-			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(187, 244);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(214, 24);
-			this->comboBox1->TabIndex = 29;
+			this->StatusComboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->StatusComboBox->FormattingEnabled = true;
+			this->StatusComboBox->Location = System::Drawing::Point(187, 244);
+			this->StatusComboBox->Name = L"StatusComboBox";
+			this->StatusComboBox->Size = System::Drawing::Size(214, 24);
+			this->StatusComboBox->TabIndex = 29;
 			// 
 			// TicketInfoForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(540, 586);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->StatusComboBox);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->Save);
 			this->Controls->Add(this->PriceLabel);
@@ -324,5 +414,16 @@ namespace ProjectTest {
 
 		}
 #pragma endregion
+private: System::Void comboBoxServices_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	string serviceString = msclr::interop::marshal_as<std::string>(comboBoxServices->Text);
+	for (int i = 0; i < DataRepository::serviceDAO.Services.size(); i++) {
+		if (serviceString == DataRepository::serviceDAO.Services[i].Title) {
+
+			PriceLabel->Text = gcnew String(to_string(DataRepository::serviceDAO.Services[i].Price).c_str());
+			PriceLabel->Text += " b.r.";
+			break;
+		}
+	}
+}
 };
 }
