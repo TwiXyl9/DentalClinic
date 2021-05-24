@@ -47,7 +47,6 @@ string Ticket::StatusToString(Stat status)
 
 	}
 }
-
 Ticket::Stat Ticket::StringToStatus(string str) {
 	if (str == "Wait")
 	{

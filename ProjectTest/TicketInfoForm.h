@@ -84,7 +84,7 @@ namespace ProjectTest {
 			StatusComboBox->Text = gcnew String(gcnew String(Ticket::StatusToString(Ticket::Stat::Overdue).c_str()));
 		}
 		else if (DateTime::Now.Hour == stoi(msclr::interop::marshal_as<std::string>(HoursCb->Text)) &&
-			DateTime::Now.Minute <= stoi(msclr::interop::marshal_as<std::string>(MinutesCb->Text)) + 29 &&
+			(DateTime::Now.Minute <= (stoi(msclr::interop::marshal_as<std::string>(MinutesCb->Text)) + 29)) &&
 			DateTime::Now.Minute >= stoi(msclr::interop::marshal_as<std::string>(MinutesCb->Text)))
 		{
 			StatusComboBox->Items->Add(gcnew String(Ticket::StatusToString(Ticket::Stat::Processing).c_str()));
@@ -424,13 +424,13 @@ private: System::Void comboBoxServices_SelectedIndexChanged(System::Object^ send
 	}
 }
 private: System::Void dateTimePicker_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
-	FillStatus();
+	if(HoursCb->Text!="" && MinutesCb->Text!="")FillStatus();
 }
 private: System::Void HoursCb_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	FillStatus();
+	if (HoursCb->Text != "" && MinutesCb->Text != "")FillStatus();
 }
 private: System::Void MinutesCb_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	FillStatus();
+	if (HoursCb->Text != "" && MinutesCb->Text != "")FillStatus();
 }
 private: System::Void Save_Click(System::Object^ sender, System::EventArgs^ e) {
 	DateTime selectedDate = dateTimePicker->Value;

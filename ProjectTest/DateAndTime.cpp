@@ -12,7 +12,7 @@ vector<string> DateAndTime::GetDateFields(string dateTime)
 
 	for (int i = 0; ; i++)
 	{
-		if (dateTime[i] == '.')
+		if (dateTime[i] == '.') // 10.10.2010
 		{
 			fields.push_back(field);
 			field = "";
@@ -38,7 +38,7 @@ vector<string> DateAndTime::GetDateAndTimeFields(string dateTime)
 
 	for (int i = 0; ; i++)
 	{
-		if (dateTime[i] == '.' || dateTime[i] == ' ')
+		if (dateTime[i] == '.' || dateTime[i] == ' ')// 12.03.2002 10.36.00
 		{
 			fields.push_back(field);
 			field = "";

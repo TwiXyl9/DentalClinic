@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
 #include "DataRepository.h"
-
+#include "Ticket.h"
+#include <algorithm>
 namespace ProjectTest {
 
 	using namespace System;
@@ -20,8 +21,8 @@ namespace ProjectTest {
 		Statistic(void)
 		{
 			InitializeComponent();
-			
-			vector<int> months = {0,0,0,0,0,0,0,0,0,0,0,0};
+			ShowData();
+			/*vector<int> months = {0,0,0,0,0,0,0,0,0,0,0,0};
 
 			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++) {
 				months[DataRepository::ticketDAO.Tickets[i].DateTime.Months - 1]++;
@@ -39,10 +40,59 @@ namespace ProjectTest {
 			chart1->Series["Months"]->Points->AddY((double)months[8]);
 			chart1->Series["Months"]->Points->AddY((double)months[9]);
 			chart1->Series["Months"]->Points->AddY((double)months[10]);
-			chart1->Series["Months"]->Points->AddY((double)months[11]);
+			chart1->Series["Months"]->Points->AddY((double)months[11]);*/
 
 		}
-
+	public: void ShowData() {
+		NumOfPatients_label->Text = DataRepository::patientCardDAO.PatientCards.size().ToString();
+		AllTickets_label->Text = DataRepository::ticketDAO.Tickets.size().ToString();
+		int numOfOverdue = 0;
+		int numOfDone = 0;
+		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+		{
+			if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Done)numOfDone++;
+			if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Overdue)numOfOverdue++;
+		}
+		DoneTIckets_label->Text = numOfDone.ToString();
+		OverdueTickets_label->Text = numOfOverdue.ToString();
+	}
+	/*public: vector<string> GetPopularMonths() {
+		vector<int> months = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+		vector<string> popularMonths;
+		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
+		{
+			months[DataRepository::ticketDAO.Tickets[i].DateTime.Months - 1]++;
+		}
+		int idOfMostPopular = 0;
+		int countOfMostPopular = 0;
+		for (int i = 0; i < months.size(); i++)
+		{
+			if (months[i] > countOfMostPopular) {
+				countOfMostPopular = months[i];
+				idOfMostPopular = i;
+			}
+		}
+		return popularMonths;
+	}*/
+	/*public: string MonthToString(int id) {
+		switch (id)
+		{
+		case 0: return "January";
+		case 1: return "February";
+		case 2: return "March";
+		case 3: return "April";
+		case 4: return "May";
+		case 5: return "June";
+		case 6: return "July";
+		case 7: return "August";
+		case 8: return "September";
+		case 9: return "October";
+		case 10: return "November";
+		case 11: return "December";
+		default:
+			break;
+		}
+	}*/
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -54,7 +104,24 @@ namespace ProjectTest {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ NumOfPatients_label;
+	private: System::Windows::Forms::Label^ AllTickets_label;
+	protected:
+
+
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ DoneTIckets_label;
+
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ OverdueTickets_label;
+
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ Month_label;
+
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+
 	protected:
 
 	private:
@@ -70,46 +137,145 @@ namespace ProjectTest {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Statistic::typeid));
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->NumOfPatients_label = (gcnew System::Windows::Forms::Label());
+			this->AllTickets_label = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->DoneTIckets_label = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->OverdueTickets_label = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->Month_label = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// chart1
+			// label1
 			// 
-			this->chart1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(12, 12);
-			this->chart1->Name = L"chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StackedColumn;
-			series1->Legend = L"Legend1";
-			series1->Name = L"Months";
-			series1->YValuesPerPoint = 2;
-			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(983, 416);
-			this->chart1->TabIndex = 0;
-			this->chart1->Text = L"chart1";
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(65, 41);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(132, 17);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Number of patients:";
+			// 
+			// NumOfPatients_label
+			// 
+			this->NumOfPatients_label->AutoSize = true;
+			this->NumOfPatients_label->Location = System::Drawing::Point(203, 41);
+			this->NumOfPatients_label->Name = L"NumOfPatients_label";
+			this->NumOfPatients_label->Size = System::Drawing::Size(16, 17);
+			this->NumOfPatients_label->TabIndex = 1;
+			this->NumOfPatients_label->Text = L"0";
+			// 
+			// AllTickets_label
+			// 
+			this->AllTickets_label->AutoSize = true;
+			this->AllTickets_label->Location = System::Drawing::Point(203, 94);
+			this->AllTickets_label->Name = L"AllTickets_label";
+			this->AllTickets_label->Size = System::Drawing::Size(16, 17);
+			this->AllTickets_label->TabIndex = 3;
+			this->AllTickets_label->Text = L"0";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(41, 94);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(156, 17);
+			this->label4->TabIndex = 2;
+			this->label4->Text = L"Total number of tickets:";
+			// 
+			// DoneTIckets_label
+			// 
+			this->DoneTIckets_label->AutoSize = true;
+			this->DoneTIckets_label->Location = System::Drawing::Point(203, 144);
+			this->DoneTIckets_label->Name = L"DoneTIckets_label";
+			this->DoneTIckets_label->Size = System::Drawing::Size(16, 17);
+			this->DoneTIckets_label->TabIndex = 5;
+			this->DoneTIckets_label->Text = L"0";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(39, 144);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(158, 17);
+			this->label6->TabIndex = 4;
+			this->label6->Text = L"Number of done tickets:";
+			// 
+			// OverdueTickets_label
+			// 
+			this->OverdueTickets_label->AutoSize = true;
+			this->OverdueTickets_label->Location = System::Drawing::Point(203, 202);
+			this->OverdueTickets_label->Name = L"OverdueTickets_label";
+			this->OverdueTickets_label->Size = System::Drawing::Size(16, 17);
+			this->OverdueTickets_label->TabIndex = 7;
+			this->OverdueTickets_label->Text = L"0";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(19, 202);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(178, 17);
+			this->label8->TabIndex = 6;
+			this->label8->Text = L"Number of overdue tickets:";
+			// 
+			// Month_label
+			// 
+			this->Month_label->AutoSize = true;
+			this->Month_label->Location = System::Drawing::Point(203, 258);
+			this->Month_label->Name = L"Month_label";
+			this->Month_label->Size = System::Drawing::Size(16, 17);
+			this->Month_label->TabIndex = 9;
+			this->Month_label->Text = L"0";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(31, 258);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(166, 17);
+			this->label10->TabIndex = 8;
+			this->label10->Text = L"The most popular month:";
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->label4);
+			this->groupBox1->Controls->Add(this->Month_label);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Controls->Add(this->label10);
+			this->groupBox1->Controls->Add(this->NumOfPatients_label);
+			this->groupBox1->Controls->Add(this->OverdueTickets_label);
+			this->groupBox1->Controls->Add(this->AllTickets_label);
+			this->groupBox1->Controls->Add(this->label8);
+			this->groupBox1->Controls->Add(this->label6);
+			this->groupBox1->Controls->Add(this->DoneTIckets_label);
+			this->groupBox1->Location = System::Drawing::Point(53, 39);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(307, 303);
+			this->groupBox1->TabIndex = 10;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Statistic";
 			// 
 			// Statistic
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1007, 573);
-			this->Controls->Add(this->chart1);
+			this->ClientSize = System::Drawing::Size(407, 387);
+			this->Controls->Add(this->groupBox1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Statistic";
-			this->Text = L"Statistic";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Dental Clinic";
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	};
+};
 }

@@ -2,7 +2,7 @@
 
 DataRepository::DataRepository()
 {
-	
+
 }
 
 PatientCardDAO DataRepository::patientCardDAO = PatientCardDAO();

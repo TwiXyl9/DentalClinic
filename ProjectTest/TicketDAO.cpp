@@ -26,6 +26,7 @@ void TicketDAO::LoadTickets()
 		ticket.DateTime.Hours = stoi(dateOfBirthFields[3]);
 		ticket.DateTime.Minutes = stoi(dateOfBirthFields[4]);
 		ticket.DateTime.Seconds = stoi(dateOfBirthFields[5]);
+
 		ticket.Status = Ticket::StringToStatus(ticketFields[4]);
 
 		Tickets.push_back(ticket);
@@ -50,9 +51,9 @@ void TicketDAO::SaveTickets()
 int TicketDAO::GetNewId()
 {
 	int new_id = 0;
-	for each (Ticket service in Tickets)
+	for each (Ticket ticket in Tickets) 
 	{
-		new_id = service.Id;
+		new_id = ticket.Id;
 	}
 	new_id++;
 	return new_id;

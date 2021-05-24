@@ -114,9 +114,9 @@ namespace ProjectTest {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(258, 82);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(36, 17);
+			this->label3->Size = System::Drawing::Size(33, 17);
 			this->label3->TabIndex = 5;
-			this->label3->Text = L"á. ð.";
+			this->label3->Text = L"b. r.";
 			// 
 			// AddServiceForm
 			// 

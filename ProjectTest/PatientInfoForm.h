@@ -321,8 +321,6 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	DateTime birth = BirthPicker->Value;
 	String^ phoneNumber = PhoneBox->Text;
 	String^ email = EmailBox->Text;
-	DateTime date;
-	DateTime registrationDate = date.Now;
 	if (f_name->Length < 2) {
 		ExceptionBoxForm exceptionBox("Name entered incorrectly!");
 		exceptionBox.ShowDialog();
@@ -340,18 +338,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		exceptionBox.ShowDialog();
 	}
 	else {
-		PatientCard new_card;
-
-		new_card.Id = DataRepository::patientCardDAO.PatientCards[ID].Id;
-		new_card.Name = msclr::interop::marshal_as<std::string>(f_name);
-		new_card.Surname = msclr::interop::marshal_as<std::string>(l_name);
-		new_card.Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
-		new_card.Email = msclr::interop::marshal_as<std::string>(email);
+		DataRepository::patientCardDAO.PatientCards[ID].Name = msclr::interop::marshal_as<std::string>(f_name);
+		DataRepository::patientCardDAO.PatientCards[ID].Surname = msclr::interop::marshal_as<std::string>(l_name);
+		DataRepository::patientCardDAO.PatientCards[ID].Phone = msclr::interop::marshal_as<std::string>(phoneNumber);
+		DataRepository::patientCardDAO.PatientCards[ID].Email = msclr::interop::marshal_as<std::string>(email);
 		DateAndTime new_birth = DateAndTime::ToDateAndTime(birth);
-		new_card.DateOfBirth = new_birth;
-		DateAndTime new_reg = new_birth.ToDateAndTime(registrationDate);
-		new_card.DateOfRegistartion = new_reg;
-		DataRepository::patientCardDAO.PatientCards[ID] = new_card;
+		DataRepository::patientCardDAO.PatientCards[ID].DateOfBirth = new_birth;
 		DataRepository::patientCardDAO.SavePatientCards();
 		this->Hide();
 	}

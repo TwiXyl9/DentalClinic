@@ -8,6 +8,7 @@
 #include "Service.h"
 #include "TicketInfoForm.h"
 #include "Statistic.h"
+#include <msclr\marshal_cppstd.h>
 
 namespace ProjectTest {
 
@@ -40,8 +41,7 @@ namespace ProjectTest {
 		}
 
 
-	public:
-		void ShowData() {
+	public: void ShowData() {
 			PatientGridView->Rows->Clear();
 			DateAndTime chooseDate = DateAndTime::ToDateAndTime(dateTimePicker->Value);
 
@@ -84,14 +84,15 @@ namespace ProjectTest {
 	public: void RefreshStatus() {
 		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 		{
-			if ((dateTimePicker->Value.Date <= DateTime::Now.Date) || (dateTimePicker->Value.Date == DateTime::Now.Date && (DateTime::Now.Hour >= DataRepository::ticketDAO.Tickets[i].DateTime.Hours || (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute > DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29))))
+			DateTime date = DateTime(DataRepository::ticketDAO.Tickets[i].DateTime.Years, DataRepository::ticketDAO.Tickets[i].DateTime.Months, DataRepository::ticketDAO.Tickets[i].DateTime.Days, DataRepository::ticketDAO.Tickets[i].DateTime.Hours, DataRepository::ticketDAO.Tickets[i].DateTime.Minutes, DataRepository::ticketDAO.Tickets[i].DateTime.Seconds);
+			if ((date.Date < DateTime::Now.Date) || (date.Date == DateTime::Now.Date &&  date.Hour < DateTime::Now.Hour) || (date.Date == DateTime::Now.Date && DateTime::Now.Hour == date.Hour && ((date.Minute + 29) < DateTime::Now.Minute)))
 			{
 				if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Wait || DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Processing) {
 					//выполнено
 					DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Done;
 				}
 			}
-			else if (dateTimePicker->Value.Date == DateTime::Now.Date && DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute <= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29 && DateTime::Now.Minute >= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes)
+			else if (date.Date == DateTime::Now.Date && DateTime::Now.Hour == date.Hour && DateTime::Now.Minute <= date.Minute + 29 && DateTime::Now.Minute >= date.Minute)
 			{
 				//в процессе
 				DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Processing;

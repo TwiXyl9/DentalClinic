@@ -32,7 +32,7 @@ namespace ProjectTest {
 	public:
 		void SetMaxDate() {
 
-			Birth_dateTimePicker->MaxDate= DateTime().Now;
+			Birth_dateTimePicker->MaxDate = DateTime().Now;
 		}
 
 	protected:
@@ -219,8 +219,7 @@ private: System::Void SavePatient_Button_Click(System::Object^ sender, System::E
 	DateTime birth = Birth_dateTimePicker->Value;
 	String^ phoneNumber = PhoneNumber_textBox->Text;
 	String^ email = Email_textBox->Text;
-	DateTime date;
-	DateTime registrationDate = date.Now;
+	DateTime registrationDate = DateTime::Now;
 	if (f_name->Length<2) {
 		ExceptionBoxForm exceptionBox("Name entered incorrectly!");
 		exceptionBox.ShowDialog();

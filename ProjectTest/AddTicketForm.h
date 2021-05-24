@@ -397,7 +397,7 @@ private: System::Windows::Forms::TextBox^ textBox1;
 
 			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 			{
-				if (DataRepository::ticketDAO.Tickets[i].DateTime.Years == ticketDate.Years && DataRepository::ticketDAO.Tickets[i].DateTime.Days == ticketDate.Days)
+				if (DataRepository::ticketDAO.Tickets[i].DateTime.Years == ticketDate.Years && DataRepository::ticketDAO.Tickets[i].DateTime.Months == ticketDate.Months && DataRepository::ticketDAO.Tickets[i].DateTime.Days == ticketDate.Days)
 				{
 					if (DataRepository::ticketDAO.Tickets[i].DateTime.Hours == ticketDate.Hours && DataRepository::ticketDAO.Tickets[i].DateTime.Minutes == ticketDate.Minutes) {
 						ExceptionBoxForm("This time is already busy!").ShowDialog();
