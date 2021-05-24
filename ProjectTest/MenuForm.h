@@ -84,23 +84,17 @@ namespace ProjectTest {
 	public: void RefreshStatus() {
 		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 		{
-			if (DataRepository::ticketDAO.Tickets[i].DateTime.Years == DateTime::Now.Year && DataRepository::ticketDAO.Tickets[i].DateTime.Months == DateTime::Now.Month && DataRepository::ticketDAO.Tickets[i].DateTime.Days == DateTime::Now.Day)
+			if ((dateTimePicker->Value.Date <= DateTime::Now.Date) || (dateTimePicker->Value.Date == DateTime::Now.Date && (DateTime::Now.Hour >= DataRepository::ticketDAO.Tickets[i].DateTime.Hours || (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute > DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29))))
 			{
-				if (dateTimePicker->Value.Date == DateTime::Now.Date)
-				{
-					if (DateTime::Now.Hour >= DataRepository::ticketDAO.Tickets[i].DateTime.Hours || (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute > DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29))
-					{
-						if (DataRepository::ticketDAO.Tickets[i].Status== Ticket::Stat::Wait || DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Processing) {
-							//просрочено
-							DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Done;
-						}
-					}
-					else if (DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute <= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29 && DateTime::Now.Minute >= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes)
-					{
-						//в процессе
-						DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Processing;
-					}
+				if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Wait || DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Processing) {
+					//выполнено
+					DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Done;
 				}
+			}
+			else if (dateTimePicker->Value.Date == DateTime::Now.Date && DateTime::Now.Hour == DataRepository::ticketDAO.Tickets[i].DateTime.Hours && DateTime::Now.Minute <= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes + 29 && DateTime::Now.Minute >= DataRepository::ticketDAO.Tickets[i].DateTime.Minutes)
+			{
+				//в процессе
+				DataRepository::ticketDAO.Tickets[i].Status = Ticket::Stat::Processing;
 			}
 		}
 		DataRepository::ticketDAO.SaveTickets();
