@@ -7,6 +7,7 @@
 #include "PatientÑard.h"
 #include "Service.h"
 #include "TicketInfoForm.h"
+#include "Statistic.h"
 
 namespace ProjectTest {
 
@@ -151,6 +152,7 @@ namespace ProjectTest {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TimeColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 private: System::Windows::Forms::Button^ Refresh_Button;
+private: System::Windows::Forms::Button^ statisticBtn;
 
 
 
@@ -216,6 +218,7 @@ private: System::Windows::Forms::Button^ Refresh_Button;
 			this->addTicket = (gcnew System::Windows::Forms::Button());
 			this->removeTicket = (gcnew System::Windows::Forms::Button());
 			this->Refresh_Button = (gcnew System::Windows::Forms::Button());
+			this->statisticBtn = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PatientGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -342,7 +345,7 @@ private: System::Windows::Forms::Button^ Refresh_Button;
 			// 
 			// addTicket
 			// 
-			this->addTicket->Location = System::Drawing::Point(34, 680);
+			this->addTicket->Location = System::Drawing::Point(34, 705);
 			this->addTicket->Name = L"addTicket";
 			this->addTicket->Size = System::Drawing::Size(179, 53);
 			this->addTicket->TabIndex = 12;
@@ -352,7 +355,7 @@ private: System::Windows::Forms::Button^ Refresh_Button;
 			// 
 			// removeTicket
 			// 
-			this->removeTicket->Location = System::Drawing::Point(347, 680);
+			this->removeTicket->Location = System::Drawing::Point(219, 705);
 			this->removeTicket->Name = L"removeTicket";
 			this->removeTicket->Size = System::Drawing::Size(179, 53);
 			this->removeTicket->TabIndex = 13;
@@ -371,11 +374,22 @@ private: System::Windows::Forms::Button^ Refresh_Button;
 			this->Refresh_Button->UseVisualStyleBackColor = false;
 			this->Refresh_Button->Click += gcnew System::EventHandler(this, &MenuForm::Refresh_Button_Click);
 			// 
+			// statisticBtn
+			// 
+			this->statisticBtn->Location = System::Drawing::Point(430, 705);
+			this->statisticBtn->Name = L"statisticBtn";
+			this->statisticBtn->Size = System::Drawing::Size(96, 53);
+			this->statisticBtn->TabIndex = 15;
+			this->statisticBtn->Text = L"Statistic";
+			this->statisticBtn->UseVisualStyleBackColor = true;
+			this->statisticBtn->Click += gcnew System::EventHandler(this, &MenuForm::statisticBtn_Click);
+			// 
 			// MenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(561, 770);
+			this->Controls->Add(this->statisticBtn);
 			this->Controls->Add(this->Refresh_Button);
 			this->Controls->Add(this->removeTicket);
 			this->Controls->Add(this->addTicket);
@@ -447,6 +461,10 @@ private: System::Void PatientGridView_CellContentClick(System::Object^ sender, S
 	TicketInfoForm ticketInfoForm(ticket_id);
 	ticketInfoForm.ShowDialog();
 	ShowData();
+}
+private: System::Void statisticBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	Statistic().ShowDialog();
+
 }
 };
 }

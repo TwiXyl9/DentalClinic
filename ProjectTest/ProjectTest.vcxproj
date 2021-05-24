@@ -115,6 +115,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,7 @@
     <ClCompile Include="ServiceDAO.cpp" />
     <ClCompile Include="ServiceInfoForm.cpp" />
     <ClCompile Include="ServicesForm.cpp" />
+    <ClCompile Include="Statistic.cpp" />
     <ClCompile Include="Ticket.cpp" />
     <ClCompile Include="TicketDAO.cpp" />
     <ClCompile Include="TicketInfoForm.cpp" />
@@ -171,6 +173,9 @@
     <ClInclude Include="ServicesForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Statistic.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="TicketDAO.h" />
     <ClInclude Include="TicketInfoForm.h">
@@ -204,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ServicesForm.resx">
       <DependentUpon>ServicesForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistic.resx">
+      <DependentUpon>Statistic.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TicketInfoForm.resx">
       <DependentUpon>TicketInfoForm.h</DependentUpon>

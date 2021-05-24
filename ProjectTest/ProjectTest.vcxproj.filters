@@ -78,6 +78,9 @@
     <ClCompile Include="TicketInfoForm.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="Statistic.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuForm.h">
@@ -132,6 +135,9 @@
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
     <ClInclude Include="TicketInfoForm.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="Statistic.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
   </ItemGroup>
