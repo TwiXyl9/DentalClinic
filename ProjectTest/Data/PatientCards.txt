@@ -1,0 +1,6 @@
+1;Vova;Petrov;+375296801589;vova@gmail.com;4.5.2005;24.5.2021;
+2;Kirill;Ivaniv;+375227806577;ivamov@mail.ru;17.3.1995;24.5.2021;
+3;Victor;Smolski;+375294590673;sm_vi@mail.ru;10.2.2015;24.5.2021;
+4;Anna;Rov;+375445678924;rovA@gmail.com;12.6.2003;24.5.2021;
+5;Dmitry;Volodin;+375296701698;volodddin@mail.ru;4.10.2001;24.5.2021;
+6;Petr;Davchenko;+375297805567;daviPetra@mail.ru;14.7.2004;24.5.2021;

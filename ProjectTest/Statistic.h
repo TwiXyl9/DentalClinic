@@ -22,25 +22,6 @@ namespace ProjectTest {
 		{
 			InitializeComponent();
 			ShowData();
-			/*vector<int> months = {0,0,0,0,0,0,0,0,0,0,0,0};
-
-			for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++) {
-				months[DataRepository::ticketDAO.Tickets[i].DateTime.Months - 1]++;
-			}
-
-
-			chart1->Series["Months"]->Points->AddY((double)months[0]);
-			chart1->Series["Months"]->Points->AddY((double)months[1]);
-			chart1->Series["Months"]->Points->AddY((double)months[2]);
-			chart1->Series["Months"]->Points->AddY((double)months[3]);
-			chart1->Series["Months"]->Points->AddY((double)months[4]);
-			chart1->Series["Months"]->Points->AddY((double)months[5]);
-			chart1->Series["Months"]->Points->AddY((double)months[6]);
-			chart1->Series["Months"]->Points->AddY((double)months[7]);
-			chart1->Series["Months"]->Points->AddY((double)months[8]);
-			chart1->Series["Months"]->Points->AddY((double)months[9]);
-			chart1->Series["Months"]->Points->AddY((double)months[10]);
-			chart1->Series["Months"]->Points->AddY((double)months[11]);*/
 
 		}
 	public: void ShowData() {
@@ -48,20 +29,51 @@ namespace ProjectTest {
 		AllTickets_label->Text = DataRepository::ticketDAO.Tickets.size().ToString();
 		int numOfOverdue = 0;
 		int numOfDone = 0;
+		int numberOfWaiting = 0;
 		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 		{
 			if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Done)numOfDone++;
 			if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Overdue)numOfOverdue++;
+			if (DataRepository::ticketDAO.Tickets[i].Status == Ticket::Stat::Wait)numberOfWaiting++;
 		}
 		DoneTIckets_label->Text = numOfDone.ToString();
 		OverdueTickets_label->Text = numOfOverdue.ToString();
+		WaitingTickets_lable->Text = numberOfWaiting.ToString();
+
+
+		int maxMonth = GetMostPopularMonth();
+		String^ maxMonthString = gcnew String(MonthToString(maxMonth).c_str());
+
+		Month_label->Text = maxMonthString;
+		 
 	}
+
+
+	public: int GetMostPopularMonth() {
+		vector<int> months = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for each (auto ticket in DataRepository::ticketDAO.Tickets) {
+			months[ticket.DateTime.Months-1]++;
+		}
+
+		int maxMonth = -1;
+		int maxValue = 0;
+		for (int i = 0; i < months.size(); i++) {
+			if (months[i] > maxValue) {
+				maxValue = months[i];
+				maxMonth = i;
+			}
+		}
+
+		return maxMonth;
+	}
+
 	/*public: vector<string> GetPopularMonths() {
 		vector<int> months = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 		vector<string> popularMonths;
 		for (int i = 0; i < DataRepository::ticketDAO.Tickets.size(); i++)
 		{
-			months[DataRepository::ticketDAO.Tickets[i].DateTime.Months - 1]++;
+			months[DataRepository::ticketDAO.Tickets[i].DateTime.Months]++;
 		}
 		int idOfMostPopular = 0;
 		int countOfMostPopular = 0;
@@ -74,7 +86,7 @@ namespace ProjectTest {
 		}
 		return popularMonths;
 	}*/
-	/*public: string MonthToString(int id) {
+	public: string MonthToString(int id) {
 		switch (id)
 		{
 		case 0: return "January";
@@ -92,7 +104,7 @@ namespace ProjectTest {
 		default:
 			break;
 		}
-	}*/
+	}
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -121,6 +133,8 @@ namespace ProjectTest {
 
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
+private: System::Windows::Forms::Label^ WaitingTickets_lable;
+private: System::Windows::Forms::Label^ label2;
 
 	protected:
 
@@ -149,6 +163,8 @@ namespace ProjectTest {
 			this->Month_label = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->WaitingTickets_lable = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -173,7 +189,7 @@ namespace ProjectTest {
 			// AllTickets_label
 			// 
 			this->AllTickets_label->AutoSize = true;
-			this->AllTickets_label->Location = System::Drawing::Point(203, 94);
+			this->AllTickets_label->Location = System::Drawing::Point(203, 79);
 			this->AllTickets_label->Name = L"AllTickets_label";
 			this->AllTickets_label->Size = System::Drawing::Size(16, 17);
 			this->AllTickets_label->TabIndex = 3;
@@ -182,7 +198,7 @@ namespace ProjectTest {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(41, 94);
+			this->label4->Location = System::Drawing::Point(41, 79);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(156, 17);
 			this->label4->TabIndex = 2;
@@ -191,7 +207,7 @@ namespace ProjectTest {
 			// DoneTIckets_label
 			// 
 			this->DoneTIckets_label->AutoSize = true;
-			this->DoneTIckets_label->Location = System::Drawing::Point(203, 144);
+			this->DoneTIckets_label->Location = System::Drawing::Point(203, 118);
 			this->DoneTIckets_label->Name = L"DoneTIckets_label";
 			this->DoneTIckets_label->Size = System::Drawing::Size(16, 17);
 			this->DoneTIckets_label->TabIndex = 5;
@@ -200,7 +216,7 @@ namespace ProjectTest {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(39, 144);
+			this->label6->Location = System::Drawing::Point(39, 118);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(158, 17);
 			this->label6->TabIndex = 4;
@@ -209,7 +225,7 @@ namespace ProjectTest {
 			// OverdueTickets_label
 			// 
 			this->OverdueTickets_label->AutoSize = true;
-			this->OverdueTickets_label->Location = System::Drawing::Point(203, 202);
+			this->OverdueTickets_label->Location = System::Drawing::Point(203, 154);
 			this->OverdueTickets_label->Name = L"OverdueTickets_label";
 			this->OverdueTickets_label->Size = System::Drawing::Size(16, 17);
 			this->OverdueTickets_label->TabIndex = 7;
@@ -218,7 +234,7 @@ namespace ProjectTest {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(19, 202);
+			this->label8->Location = System::Drawing::Point(19, 154);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(178, 17);
 			this->label8->TabIndex = 6;
@@ -227,7 +243,7 @@ namespace ProjectTest {
 			// Month_label
 			// 
 			this->Month_label->AutoSize = true;
-			this->Month_label->Location = System::Drawing::Point(203, 258);
+			this->Month_label->Location = System::Drawing::Point(203, 220);
 			this->Month_label->Name = L"Month_label";
 			this->Month_label->Size = System::Drawing::Size(16, 17);
 			this->Month_label->TabIndex = 9;
@@ -236,7 +252,7 @@ namespace ProjectTest {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(31, 258);
+			this->label10->Location = System::Drawing::Point(31, 220);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(166, 17);
 			this->label10->TabIndex = 8;
@@ -244,6 +260,8 @@ namespace ProjectTest {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->WaitingTickets_lable);
+			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->label4);
 			this->groupBox1->Controls->Add(this->Month_label);
 			this->groupBox1->Controls->Add(this->label1);
@@ -256,10 +274,28 @@ namespace ProjectTest {
 			this->groupBox1->Controls->Add(this->DoneTIckets_label);
 			this->groupBox1->Location = System::Drawing::Point(53, 39);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(307, 303);
+			this->groupBox1->Size = System::Drawing::Size(307, 270);
 			this->groupBox1->TabIndex = 10;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Statistic";
+			// 
+			// WaitingTickets_lable
+			// 
+			this->WaitingTickets_lable->AutoSize = true;
+			this->WaitingTickets_lable->Location = System::Drawing::Point(203, 187);
+			this->WaitingTickets_lable->Name = L"WaitingTickets_lable";
+			this->WaitingTickets_lable->Size = System::Drawing::Size(16, 17);
+			this->WaitingTickets_lable->TabIndex = 11;
+			this->WaitingTickets_lable->Text = L"0";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(28, 187);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(169, 17);
+			this->label2->TabIndex = 10;
+			this->label2->Text = L"Number of waiting tickets:";
 			// 
 			// Statistic
 			// 

@@ -1,3 +1,7 @@
-2;kursovaya;100;
-3;Whiting;99;
-4;lalalala;777;
+1;Osmotr;20;
+2;Caries treatment;30;
+3;Pulpitis treatment;40;
+4;Extraction of teeth;33;
+5;Treating inflammation;55;
+6;Removal of bone protrusions;100;
+7;Installation of braces;230;
